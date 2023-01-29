@@ -183,18 +183,18 @@ console.log(req.body)
             
             
             })
-            console.log(newData)
+            
             
             const jwter = jwt.sign({username:newData.username,firstName:newData.firstName,url:newData.url,idSocket:newData._id},process.env.MYSECRET)
             
             const saver = await newData.save()
-            console.log(saver)
+            
             res.cookie("token",jwter)
             res.send(jwter)        
     
     }
     catch(error){
-
+console.log(error)
       
     }
 })

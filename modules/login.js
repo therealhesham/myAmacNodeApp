@@ -29,7 +29,7 @@ const findUser = await loginHandleMongo.findOne({email:email,password:password})
 
 if (!findUser) return res.send({data:"dataNotFound"})
 
-// const jwter =  jwt.sign({email:email},"KentuckyFriedChicken")
+
 
 const jwter = jwt.sign({username:findUser.username,
     firstName:findUser.firstName,

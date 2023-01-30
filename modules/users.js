@@ -7,6 +7,7 @@ const { default: mongoose } = require("mongoose");
 const { io } = require("../app");
 // const  io  = require("../app");
 const jwt=require("jsonwebtoken");
+require("dotenv").config()
 const cookieParser = require("cookie-parser");
 appGettUser = express();
 
@@ -62,7 +63,8 @@ appGettUser.post("/send",async (req,res)=>{
         
         
         const sender = cookies.token
-        const decoder = jwt.verify(sender,"heshamLoveHagr")
+        
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
         
         const data = new notifiy({
             sender:decoder.firstName,
@@ -84,20 +86,50 @@ appGettUser.post("/send",async (req,res)=>{
 })
 
 appGettUser.get("/requests",async (req,res)=>{
+    var pairs = req.headers.cookie.split(';')
 
-const notifications = await notifiy.find();
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+           var nameValue = pairs[i].split('=');
+           cookies[nameValue[0].trim()] = nameValue[1];
+        }
+        
+        
+        const sender = cookies.token
+        
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
+        console.log(decoder)
+const notifications = await notifiy.find({firstName:decoder.firstName});
 
 res.send(notifications)
 
 
 })
 appGettUser.get("/falserequests",async (req,res)=>{
+console.log(req.method)
+try{
+    var pairs = req.headers.cookie.split(';')
 
-    const notifications = await notifiy.find({isOk:false});
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+           var nameValue = pairs[i].split('=');
+           cookies[nameValue[0].trim()] = nameValue[1];
+        }
+        
+        
+        const sender = cookies.token
+        
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
+        console.log(decoder)
+const notifications = await notifiy.find({firstName:decoder.firstName});
+
     
     res.send(notifications)
     
-    
+    }catch(error){
+console.log("error")
+        
+    }
     })
 
 

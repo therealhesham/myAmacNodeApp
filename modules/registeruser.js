@@ -8,20 +8,19 @@ const jwt = require('jsonwebtoken');
 const formidable = require("formidable");
 const { sockets } = require("./users");
 const { mongoosetransaction } = require("./storepreview");
-
+// require("dotenv").config()
 const cloudinary = require('cloudinary').v2;
 appRegisterNew = express();
 // Return "https" URLs by setting secure: true
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARYNAME, 
-  api_key: process.env.CLOUDINARYKEY, 
-  api_secret: process.env.CLOUDINARYSECRET,
-  
-  
+cloudinary.config({ 
+  cloud_name: 'dkinaxrul', 
+  api_key: '265116928379554', 
+  api_secret: 'PnsSPiToKUCzBNFxW8iirXDnEDY',
   secure: true
 });
-CLOUDINARY_URL="cloudinary://" + process.env.CLOUDINARYKEY+":"+process.env.CLOUDINARYSECRET +"@"+process.env.CLOUDINARYNAME
+// CLOUDINARY_URL=
+// CLOUDINARY_URL="cloudinary://" + process.env.CLOUDINARYKEY+":"+process.env.CLOUDINARYSECRET +"@"+process.env.CLOUDINARYNAME
 /////////////////////////
 // Uploads an image file
 /////////////////////////
@@ -52,7 +51,7 @@ const getAssetInfo = async (publicId) => {
     // Return colors in the response
     const options = {
       colors: true,
-    };
+    };  
 
     try {
         // Get details about the asset
@@ -127,16 +126,13 @@ appRegisterNew.post("/file",async(req,res)=>{
   form.parse(req, async (err, fields, files) => {
     
  
-    console.log(req.files)
-        if (!files.image) {
-          console.log("error")
-          
-        }else{
-          console.log(files.image.filepath)
-          const result = await cloudinary.uploader.upload(files.image.filepath);
+    
+        
+  console.log(files.image.filepath)
+   const result = await cloudinary.uploader.upload(files.image.filepath);
           res.send(result.url)
           
-        }
+        
         // Upload the image
         
         
@@ -150,7 +146,7 @@ appRegisterNew.post("/file",async(req,res)=>{
     
 
 catch (error) {
-  console.error(error);
+  console.log(error);
 }
 
 })

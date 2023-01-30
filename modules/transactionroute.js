@@ -20,7 +20,13 @@ user:"string"
 
 )
 
+appTransactionRoute.get("/getimported",async(req,res)=>{
+const finder = await modelexport.find()
+res.send(finder)
 
+
+
+})
 appTransactionRoute.post("/transactionexport",async(req,res)=>{
 
 /*

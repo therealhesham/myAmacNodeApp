@@ -113,6 +113,7 @@ const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "https://localhost:3000");
     res.header('Access-Control-Allow-Origin', "https://localhost:3001");
     res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app");
+    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/#");
     res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     res.header('Access-Control-Allow-Origin', "http://localhost:3001");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

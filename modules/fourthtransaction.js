@@ -80,13 +80,13 @@ appFourthTransction.get("/refunds",async(req,res)=>{
 })
 
 
-appFourthTransction.post("/deletrefund",async(req,res)=>{
+appFourthTransction.get("/deletrefund/:id",async(req,res)=>{
 
-    const id =req.body.id;
+    const id =req.params.id;
     
-    const delet = await refunder.findByIdAndDelete(id)
+  await refunder.findByIdAndDelete(id)
     
-    res.send(delet)
+    res.send("delet")
     
 
 

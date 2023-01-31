@@ -83,14 +83,16 @@ appSecondTransaction.get("/getthirdtransactions",async(req,res)=>{
         res.send(finder)
     
     })
-    appSecondTransaction.post("/deletethirdtransaction",async(req,res)=>{
-        const id =req.body.id;
+    appSecondTransaction.get("/deletethirdtransaction/:id",async(req,res)=>{
     
-        const delet = await thirdModel.findByIdAndDelete(id)
+        const id =req.params.id;
+        console.log(id)
+        await thirdModel.findByIdAndDelete(id)
+        res.send("deleted")
         
-        res.send(delet)
+        
         
         
         })
-
+    
 module.exports.appThirdTransaction = appThirdTransaction

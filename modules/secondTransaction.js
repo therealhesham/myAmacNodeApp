@@ -117,12 +117,14 @@ appSecondTransaction.get("/getsecondtransactions",async(req,res)=>{
     res.send(finder)
 
 })
-appSecondTransaction.get("/deletesecondtransaction",async(req,res)=>{
-    const id =req.body.id;
-
-    const delet = await secondModel.findByIdAndDelete(id)
+appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     
-    res.send(delet)
+    const id =req.params.id;
+    console.log(id)
+    await secondModel.findByIdAndDelete(id)
+    res.send("deleted")
+    
+    
     
     
     })

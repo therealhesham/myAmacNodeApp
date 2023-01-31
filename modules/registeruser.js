@@ -175,8 +175,8 @@ console.log(req.body)
             email:req.body.email,
             password:req.body.password,
             repeatpassword:req.body.password,
-            nationalID:req.body.nationalID
-  //  url:req.body.url         
+            nationalID:req.body.nationalID,
+   url:req.body.url         
             
             
             })

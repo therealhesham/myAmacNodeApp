@@ -50,10 +50,11 @@ const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         })
 switch (saver.transaction) {
     case "تحويل":
-        if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 )  {await previewStoreSchema.findByIdAndDelete(saver._id) 
+        if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
+         {await thirdModel.findByIdAndDelete(saver._id) 
         
             return  res.send(false)}
-        if(findByID.items < 0)    {await previewStoreSchema.findByIdAndDelete(saver._id) 
+        if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
         
         return  res.send(false)
         }
@@ -76,6 +77,20 @@ switch (saver.transaction) {
 
     
 })
-
+appSecondTransaction.get("/getthirdtransactions",async(req,res)=>{
+    console.log(req.path)
+        const finder = await thirdModel.find();
+        res.send(finder)
+    
+    })
+    appSecondTransaction.post("/deletethirdtransaction",async(req,res)=>{
+        const id =req.body.id;
+    
+        const delet = await thirdModel.findByIdAndDelete(id)
+        
+        res.send(delet)
+        
+        
+        })
 
 module.exports.appThirdTransaction = appThirdTransaction

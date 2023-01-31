@@ -98,7 +98,7 @@ appGettUser.get("/requests",async (req,res)=>{
         const sender = cookies.token
         
         const decoder = jwt.verify(sender,process.env.MYSECRET)
-        console.log(decoder)
+
 const notifications = await notifiy.find({firstName:decoder.firstName});
 
 res.send(notifications)
@@ -106,7 +106,7 @@ res.send(notifications)
 
 })
 appGettUser.get("/falserequests",async (req,res)=>{
-console.log(req.method)
+console.log(req.path)
 try{
     var pairs = req.headers.cookie.split(';')
 
@@ -120,14 +120,14 @@ try{
         const sender = cookies.token
         
         const decoder = jwt.verify(sender,process.env.MYSECRET)
-        console.log(decoder)
+        
 const notifications = await notifiy.find({firstName:decoder.firstName});
 
     
     res.send(notifications)
     
     }catch(error){
-console.log("error")
+console.log("error from token Getter")
         
     }
     })

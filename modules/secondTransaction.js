@@ -52,9 +52,12 @@ const saver = await savesecondmodel.save()
  const findByID = await previewStoreSchema.findOne({store:data.store,
     items:data.items
     })
+    console.log("findByID")
 switch (saver.transaction) {
     case "منصرف":
-        if (!findByID) return res.send(false)
+        if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
+            const deleterr = await secondModel.findByIdAndDelete(saver._id) 
+            return res.send(false)}
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         res.send (true)
         break;
@@ -78,7 +81,9 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
         })
     switch (saver.transaction) {
         case "منصرف":
-            if (!findByID) return res.send(false)
+            if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
+                const deleterr = await secondModel.findByIdAndDelete(saver._id) 
+                return res.send(false)}
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
             res.send (true)
             break;
@@ -95,7 +100,30 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
     
 }
 
+
 })
 
+  
+appSecondTransaction.get("/specificdatas/:store",async(req,res)=>{
+    console.log(req.params.store)
+ store=req.params.store;
+    const finder = await previewStoreSchema.find({store:store})
+    res.send(finder)
 
+})
+appSecondTransaction.get("/getsecondtransactions",async(req,res)=>{
+
+    const finder = await secondModel.find();
+    res.send(finder)
+
+})
+appSecondTransaction.get("/deletesecondtransaction",async(req,res)=>{
+    const id =req.body.id;
+
+    const delet = await secondModel.findByIdAndDelete(id)
+    
+    res.send(delet)
+    
+    
+    })
 module.exports.appSecondTransaction = appSecondTransaction

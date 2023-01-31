@@ -11,6 +11,7 @@ mongoose.connect("mongodb+srv://"+ process.env.MONGOUSERNAME +":"+process.env.MO
 const schema = new mongoose.Schema({
     store :{type:"string",required:true},
     items:{type:"string",required:true},
+    type:{type:"string",required:true},
   date: {type:"string",default:new Date(Date.now()).toDateString()}
 ,
 quantity:{type:"number",required:true}})

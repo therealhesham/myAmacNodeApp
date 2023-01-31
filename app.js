@@ -27,40 +27,40 @@ const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(express.json())
-// function MiddleWareFunctionForLogin(req,res,next){
+function MiddleWareFunctionForLogin(req,res,next){
 
 
-//   try {
-//     if( req.method == "GET"){
-//     var pairs = req.headers.cookie.split(';')
-//   console.log(req.headers.cookie.split(';'))
-//     var cookies = {};
-//     for (var i = 0; i < pairs.length; i++) {
-//        var nameValue = pairs[i].split('=');
-//        cookies[nameValue[0].trim()] = nameValue[1];
-//     }
+  try {
+    if( req.method == "GET"){
+    var pairs = req.headers.cookie.split(';')
+  
+    var cookies = {};
+    for (var i = 0; i < pairs.length; i++) {
+       var nameValue = pairs[i].split('=');
+       cookies[nameValue[0].trim()] = nameValue[1];
+    }
     
     
-//     const sender = cookies.token
-//     const decoder = jwt.verify(sender,process.env.MYSECRET)
-//     if(decoder) next()}
+    const sender = cookies.token
+    const decoder = jwt.verify(sender,process.env.MYSECRET)
+    if(decoder) next()}
 
-//     else if(req.method == "POST"){
+    else if(req.method == "POST"){
 
-//       next()
+      next()
 
-//     }
+    }
   
-//   } catch (error) {
-//     res.send("not authenticated")
-//   }
-  
-  
-  
-  // }
+  } catch (error) {
+    res.send("not authenticated")
+  }
   
   
-// app.use(MiddleWareFunctionForLogin)
+  
+  }
+  
+  
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 var io = require('socket.io')(http, {

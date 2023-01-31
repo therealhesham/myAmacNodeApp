@@ -33,7 +33,7 @@ if (!findUser) return res.send({data:"dataNotFound"})
 
 const jwter = jwt.sign({username:findUser.username,
     firstName:findUser.firstName,
-    url:findUser.url,idSocket:findUser._id},process.env.MYSECRET)
+    url:findUser.url,id:findUser._id},process.env.MYSECRET)
             
 
 

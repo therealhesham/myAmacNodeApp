@@ -1,5 +1,6 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
+const { app } = require("../app");
 const { mongoosetransaction, previewStoreSchema } = require("./storepreview");
 
 appFourthTransction = express();
@@ -64,9 +65,35 @@ switch (saver.transactionType) {
 
 
 
+})
+
+
+
+
+appFourthTransction.get("/refunds",async(req,res)=>{
+
+    const finder = await refunder.find()
+    res.send(finder)
 
 
 
 })
+
+
+appFourthTransction.post("/deletrefund",async(req,res)=>{
+
+    const id =req.body.id;
+    
+    const delet = await refunder.findByIdAndDelete(id)
+    
+    res.send(delet)
+    
+
+
+
+})
+
+
+
 
 module.exports.appFourthTransction=appFourthTransction

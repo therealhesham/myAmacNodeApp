@@ -97,6 +97,7 @@ const models = mongoose.model("engineering",new mongoose.Schema({firstName:"stri
 position:"string",
 username:"string",
 email:"string",
+isAdmin:{type:"Boolean",default:false},
 password:"String",
 repeatpassword:"string",
 // nationalID:{type:"string",length:14,required:true},
@@ -174,14 +175,17 @@ console.log(req.body)
             email:req.body.email,
             password:req.body.password,
             repeatpassword:req.body.password,
-            nationalID:req.body.nationalID,
-   url:req.body.url         
+            nationalID:req.body.nationalID
+  //  url:req.body.url         
             
             
             })
             
             
-            const jwter = jwt.sign({username:newData.username,firstName:newData.firstName,url:newData.url,idSocket:newData._id},process.env.MYSECRET)
+            const jwter = jwt.sign({username:newData.username,
+              id:newData._id,
+              firstName:newData.firstName,url:newData.url,
+              isAdmin:newData.isAdmin},process.env.MYSECRET)
             
             const saver = await newData.save()
             
@@ -194,6 +198,26 @@ console.log(error)
       
     }
 })
+
+
+
+
+
+appRegisterNew.get("/info/:id",async(req,res)=>{
+
+
+  id=req.params.id
+  const finder = await models.findOne({id:id})
+  res.send(finder)
+})
+
+
+
+
+
+
+
+
 
 module.exports.appRegisterNew = appRegisterNew;
 module.exports.loginHandleMongo= models

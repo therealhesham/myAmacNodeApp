@@ -16,11 +16,23 @@ items:{type:"string",required:true},
 unit:{type:"string"},
 date:{type:"string",default:new Date(Date.now()).toDateString()},
 user:"string"
-})
+    })
 
 )
 
-appTransactionRoute.get("/getimported",async(req,res)=>{
+appTransactionRoute.post("/deletfirsttransaction",async(req,res)=>{
+
+    const id =req.body.id;
+
+const delet = await modelexport.findByIdAndDelete(id)
+
+res.send(delet)
+
+    
+    
+    
+    })
+appTransactionRoute.get("/firsttansactionlist",async(req,res)=>{
 const finder = await modelexport.find()
 res.send(finder)
 

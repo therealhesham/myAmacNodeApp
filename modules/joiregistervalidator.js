@@ -5,11 +5,17 @@ const schema = Joi.object({
         
         .min(3)
         .max(30)
-        .required(),url: Joi.string()
+        .required(),
+        isAdmin: Joi.string()
+        
+        .min(3)
+        .max(30)
+      ,
+        url: Joi.string()
         
         .min(3)
         .max(99)
-        .required(), firstName: Joi.string()
+        , firstName: Joi.string()
         
         .min(3)
         .max(30)

@@ -217,6 +217,6 @@ module.exports.appEx=express
 // app.listen(3000,()=> console.log("hi"))
 const PORT = 3000;
 
-http.listen(PORT, () => {
-  console.log(`listening on *:${PORT}`);
+http.listen(process.env.PORT || 3000, () => {
+  console.log(process.env.PORT || 3000);
 });

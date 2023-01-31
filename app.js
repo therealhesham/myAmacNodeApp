@@ -106,12 +106,13 @@ app.use(appRegisterNew)
 app.use(preview)
 
 
-// mongoose.connect("mongodb+srv://heshammoha:wM2rJzhp2eMCjLw@cluster0.hkh2k.mongodb.net/newCollection?retryWrites=true&w=majority",()=>console.log("mongoose connected"));
+
 const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "localhost:3001");
     res.header('Access-Control-Allow-Origin', "localhost:3000");
     res.header('Access-Control-Allow-Origin', "https://localhost:3000");
     res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+    res.header('Access-Control-Allow-Origin', "https://amacdatabase.onrender.com");
     res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     res.header('Access-Control-Allow-Origin', "http://localhost:3001");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

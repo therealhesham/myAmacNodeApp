@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
     }
 }));
   
-app.use(cors({credentials:true}));
+app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -77,11 +77,11 @@ console.log(req.hostname)
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
     // res.header('Access-Control-Allow-Origin', "localhost:3000/");
     
-    res.header('Access-Control-Request-Headers', 'origin, x-requested-with')
+    
     res.header('Connection', 'keep-alive')
     
-    res.header('Access-Control-Allow-Origin', "https://amaccompany.onrender.com/");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
+    
+    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");

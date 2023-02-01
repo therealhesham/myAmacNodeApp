@@ -32,7 +32,7 @@ app.use(express.json())
 const { createProxyMiddleware } = require('http-proxy-middleware')
   
   app.use('/*', createProxyMiddleware({ 
-    target: 'https://localhost:3001', //original url
+    target: '*', //original url
     changeOrigin: true, 
     //secure: false,
     onProxyRes: function (proxyRes, req, res) {

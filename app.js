@@ -60,7 +60,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   }
   
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 var io = require('socket.io')(http, {
@@ -88,6 +88,25 @@ io.on('connection', (socket) => { /* socket object may be used to send specific 
 });
 
 app.use(cookieParser())
+const allowCrossDomain = function(req, res, next) {
+    
+    
+    
+  res.header('Access-Control-Allow-Origin', "localhost:3000");
+  res.header('Access-Control-Allow-Origin', "https://localhost:3000");
+  res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+  res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+  res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+  res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE ');
+  
+  
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+}
+app.use(allowCrossDomain);
+
 // app.use(morgan("tiny"))
 app.use(appDelete)
 app.use(appSpecific)
@@ -99,7 +118,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 // app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors({credentials:false,maxAge:555555}))
+app.use(cors({credentials:false,maxAge:5555555555}))
 app.use(appLogin)
 app.use(appRegisterNew)
 
@@ -107,34 +126,6 @@ app.use(preview)
 
 
 
-const allowCrossDomain = function(req, res, next) {
-    
-    res.header({"Access-Control-Allow-Origin":"https://my-amac-react-app.vercel.app"})
-    
-    res.header('Access-Control-Allow-Origin', "localhost:3000");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3000");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app");
-    res.header('Access-Control-Allow-Origin', "https://amaccompany.onrender.com/");
-    res.header('Access-Control-Allow-Origin', "https://amaccompany.onrender.com");
-    
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/#");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/register#/");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/login#/");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/register#");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/login#");
-    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE ,OPTIONS');
-    
-    
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-}
-app.use(allowCrossDomain);
 const schema = new mongoose.Schema({
   store :"string",
   items:"string",
@@ -229,9 +220,9 @@ module.exports.app=app
 module.exports.appEx=express
 
 
-// app.listen(3000,()=> console.log("hi"))
-const PORT = 3000;
+app.listen(3000,()=> console.log("hi"))
+// const PORT = 3000;
 
-http.listen(process.env.PORT || 8885, () => {
-  console.log(process.env.PORT || 3000);
-});
+// http.listen(process.env.PORT || 3000, () => {
+//   console.log(process.env.PORT || 3000);
+// });

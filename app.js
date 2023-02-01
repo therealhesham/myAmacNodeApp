@@ -40,7 +40,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
 //     }
 // }));
-  
+app.use(cookieParser())  
 app.use(cors({credentials:true}));
 
 function MiddleWareFunctionForLogin(req,res,next){
@@ -99,8 +99,8 @@ console.log(req.hostname)
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Content-Type', 'text/plain');
     // : text/html; charset=utf-8
-    
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    // 
+    // res.header('Access-Control-Allow-Headers', 'Content-Type');
     
     // res.set('Access-Control-Allow-Origin', "localhost:3000/");
     // res.set('Access-Control-Allow-Origin', "https://localhost:3000");
@@ -122,7 +122,7 @@ console.log(req.hostname)
 app.use(userList)
 var http = require('http').createServer(app)
 
-app.use(cookieParser())
+
 
 // app.use(morgan("tiny"))
 app.use(appDelete)

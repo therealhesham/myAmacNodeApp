@@ -60,7 +60,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   }
   
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 var io = require('socket.io')(http, {

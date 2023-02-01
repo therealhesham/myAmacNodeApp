@@ -99,7 +99,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors({credentials:false,maxAge:5555555555}))
+app.use(cors({credentials:true,maxAge:5555555555}))
 app.use(appLogin)
 app.use(appRegisterNew)
 

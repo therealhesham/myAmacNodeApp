@@ -56,6 +56,7 @@
     "has-symbols": "^1.0.3",
     "helmet": "^6.0.1",
     "http-errors": "^2.0.0",
+    "http-proxy-middleware": "^2.0.6",
     "iconv-lite": "^0.4.24",
     "ieee754": "^1.2.1",
     "ignore-by-default": "^1.0.1",

@@ -13,7 +13,7 @@ const helmet = require('helmet');
 const path = require("path")
 const { appLogin } = require('./modules/login');
 const { preview, previewStoreSchema, mongoosetransaction } = require('./modules/storepreview');
-require('dotenv').config({ debug: true })
+require('dotenv').config()
 
 const morgan = require('morgan');
 const { appDelete } = require('./modules/deletroute');
@@ -27,8 +27,24 @@ const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(express.json())
-function MiddleWareFunctionForLogin(req,res,next){
 
+
+const { createProxyMiddleware } = require('http-proxy-middleware')
+  
+//   app.use('/*', createProxyMiddleware({ 
+//     target: 'https://localhost:3001', //original url
+//     changeOrigin: true, 
+//     //secure: false,
+//     onProxyRes: function (proxyRes, req, res) {
+//        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
+//     }
+// }));
+  
+
+
+function MiddleWareFunctionForLogin(req,res,next){
+console.log(req.hostname)
 
   try {
     if( req.method == "GET"){
@@ -45,11 +61,7 @@ function MiddleWareFunctionForLogin(req,res,next){
     const decoder = jwt.verify(sender,process.env.MYSECRET)
     if(decoder) next()}
 
-    else if(req.method == "POST"){
-
-      next()
-
-    }
+    
   
   } catch (error) {
     res.send("not authenticated")
@@ -58,54 +70,60 @@ function MiddleWareFunctionForLogin(req,res,next){
   
   
   }
+  app.use(cors({origin: 'https://localhost:3001',
+  credentials: true,
+  methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+  allowedHeaders: ['Content-Type',"Access-Control-Allow-Origin"],
+  exposedHeaders: ['Content-Type',"Access-Control-Allow-Origin"]})) 
   
+  const allowCrossDomain = function(req, res, next) {
+    
+    
+    res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
+    res.header('Access-Control-Allow-Origin', "localhost:3000/");
+    
+    res.header('Access-Control-Request-Headers', 'origin, x-requested-with')
+    res.header('Connection', 'keep-alive')
+    
+    res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+    res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
+    res.header('Access-Control-Allow-Origin', "localhost:3000");
+    res.header('Access-Control-Allow-Origin', "https://localhost:3000");
+    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+        res.header('Access-Control-Allow-Origin',"*");
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+    res.header('Access-Control-Allow-Credentials', true);
+
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    
+    
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    
+    // res.set('Access-Control-Allow-Origin', "localhost:3000/");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3000");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.set('Access-Control-Allow-Origin', "http://localhost:3000");
+    // res.set('Access-Control-Allow-Origin', "http://localhost:3001");
+    // res.set('Access-Control-Allow-Origin',"*");
+    // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    
+    
+    // res.set('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  }
+  app.use(allowCrossDomain);
+    
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
-var io = require('socket.io')(http, {
-  cors: {
-    origin: "http://localhost:3001",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Access-Control-Allow-Origin"],
-    credentials: true
-  }
-});
-
-
-io.on('connection', (socket) => { /* socket object may be used to send specific messages to the new connected client */
-    
-    socket.emit("connection",socket)
-    socket.on("channel-join",id=>{
-    console.log(id)
-
-
-
-// socket.on("disconnect",e =>console.log("hesham Left"))     
-    })
-    socket.emit('connects', "req.body.message");
-       
-});
 
 app.use(cookieParser())
-const allowCrossDomain = function(req, res, next) {
-    
-    
-    
-  res.header('Access-Control-Allow-Origin', "localhost:3000");
-  res.header('Access-Control-Allow-Origin', "https://localhost:3000");
-  res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-  res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-  res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-  res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE ');
-  
-  
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-}
-app.use(allowCrossDomain);
 
 // app.use(morgan("tiny"))
 app.use(appDelete)
@@ -116,9 +134,9 @@ app.use(appPostNewDataTostore)
 app.use(appSecondTransaction)
 
 app.use(appFourthTransction)
-// app.use(helmet())
+app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors({credentials:false,maxAge:5555555555}))
+
 app.use(appLogin)
 app.use(appRegisterNew)
 
@@ -144,47 +162,6 @@ app.get('/', async (req, res) => {
 
     
     //some other code
-
-app.post("/registermysql",(req,res)=>
-{
-const first_name = req.body.fName ;
-const second_name = req.body.sName ;
-const birth_date = req.body.bDate;
-const position = req.body.position
-
-
-
-  mysqlConnection.query(`insert into engineeres
-  ( first_name,second_name,birth_date,position) 
-  values ("hessxham","badr","1992-8-8","heshak")`)
-
-
-
-  res.send("ss")
-}
-
-
-
-
-)
-
-
-
-  
-// app.get('/mysql',(req,res)=>{
-
-//   mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'Kindaboy27',
-//     database: 'sakila',
-//     multipleStatements: true
-//     }).query(`select * from inventory` ,function (err, result, fields) {
-//   if (err) throw err;
-//   res.send(result)})
-
-// })
-
 
 
 // app.options('/login', cors()) 
@@ -215,7 +192,7 @@ res.header('etssssag',"hesham").send(data)
 
 
 
-module.exports.io=io
+
 module.exports.app=app
 module.exports.appEx=express
 

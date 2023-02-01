@@ -19,7 +19,7 @@ appLogin=express()
 
 appLogin.post("/login",async (req,res)=>{
 
-    
+    console.log("forLoginRote")
 const email = req.body.email
 const password = req.body.password
 

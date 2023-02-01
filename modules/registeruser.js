@@ -153,7 +153,7 @@ catch (error) {
 })
 
 appRegisterNew.post("/register",async(req,res)=>{
-
+console.log("register")
   try{
 
   const findUserName = await models.findOne({username:req.body.username})

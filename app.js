@@ -74,8 +74,8 @@ console.log(req.hostname)
   const allowCrossDomain = function(req, res, next) {
     
     
-    res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
-    res.header('Access-Control-Allow-Origin', "localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "localhost:3000/");
     
     res.header('Access-Control-Request-Headers', 'origin, x-requested-with')
     res.header('Connection', 'keep-alive')
@@ -84,17 +84,17 @@ console.log(req.hostname)
     res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
-    res.header('Access-Control-Allow-Origin', "localhost:3000");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3000");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
+    // res.header('Access-Control-Allow-Origin', "localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
         res.header('Access-Control-Allow-Origin',"*");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-    res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-    res.header('Access-Control-Allow-Credentials', false);
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+    // res.header('Access-Control-Allow-Credentials', false);
 
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     

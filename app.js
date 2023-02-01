@@ -99,7 +99,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors({credentials:true,allowedHeaders:["Access-Control-Allow-Origin"]}))
+app.use(cors({credentials:true,allowedHeaders:["Access-Control-Allow-Origin","Access-Control-Allow-Credentials",'Access-Control-Allow-Headers']}))
 app.use(appLogin)
 app.use(appRegisterNew)
 

@@ -120,6 +120,8 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
 
 appRegisterNew.post("/file",async(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app/"); // update to match the domain you will make the request from
+  res.header("Content-Typ", "*"); // update to match the domain you will make the request from
   try {
     const form = formidable({ multiples: true });
 

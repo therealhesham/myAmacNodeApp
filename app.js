@@ -60,7 +60,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   }
   
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 var io = require('socket.io')(http, {
@@ -99,7 +99,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors({credentials:true}))
+app.use(cors({credentials:true,allowedHeaders:["Access-Control-Allow-Origin"]}))
 app.use(appLogin)
 app.use(appRegisterNew)
 

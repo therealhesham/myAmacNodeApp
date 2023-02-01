@@ -27,7 +27,7 @@ const password = req.body.password
 const findUser = await loginHandleMongo.findOne({email:email,password:password})
 
 
-if (!findUser) return res.send({data:"dataNotFound"})
+if (!findUser) return res.send({data:"dataNotFound"});
 
 
 

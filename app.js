@@ -105,6 +105,11 @@ app.use(appRegisterNew)
 
 app.use(preview)
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app/"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 const allowCrossDomain = function(req, res, next) {

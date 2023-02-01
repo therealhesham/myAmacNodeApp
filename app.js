@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
   
-
+// app.use(cors());
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -70,7 +70,7 @@ console.log(req.hostname)
   
   
   }
-  app.use(cors());
+  
   const allowCrossDomain = function(req, res, next) {
     
     
@@ -94,7 +94,7 @@ console.log(req.hostname)
         res.header('Access-Control-Allow-Origin',"*");
     res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Credentials', false);
 
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     

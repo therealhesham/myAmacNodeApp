@@ -16,15 +16,7 @@ appLogin=express()
 
 // }
 
-appLogin.options('/login', function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Origin", "amaccompany.onrender.com/");
-    res.setHeader("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
-    res.setHeader("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app/");
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.end();
-  });
+
 appLogin.post("/login",async (req,res)=>{
 
     

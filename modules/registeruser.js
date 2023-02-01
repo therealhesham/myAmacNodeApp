@@ -153,7 +153,8 @@ catch (error) {
 })
 
 appRegisterNew.post("/register",async(req,res)=>{
-try{
+  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app/"); // update to match the domain you will make the request from
+  try{
 
   const findUserName = await models.findOne({username:req.body.username})
   const findEmail = await models.findOne({email:req.body.email})

@@ -31,15 +31,15 @@ app.use(express.json())
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
   
-  app.use('/*', createProxyMiddleware({ 
-    target: '*', //original url
-    changeOrigin: true, 
-    //secure: false,
-    onProxyRes: function (proxyRes, req, res) {
-       proxyRes.headers['Access-Control-Allow-Origin'] = '*';
-       proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
-    }
-}));
+//   app.use('/*', createProxyMiddleware({ 
+//     target: '*', //original url
+//     changeOrigin: true, 
+//     //secure: false,
+//     onProxyRes: function (proxyRes, req, res) {
+//        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+//        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
+//     }
+// }));
   
 // app.use(cors({credentials:false}));
 

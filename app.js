@@ -99,7 +99,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
-app.use(cors())
+app.use(cors({credentials:true,maxAge:5555555555}))
 app.use(appLogin)
 app.use(appRegisterNew)
 
@@ -132,7 +132,7 @@ const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
-
+app.use(allowCrossDomain);
 const schema = new mongoose.Schema({
   store :"string",
   items:"string",

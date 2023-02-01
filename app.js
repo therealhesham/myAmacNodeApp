@@ -70,12 +70,7 @@ console.log(req.hostname)
   
   
   }
-  app.use(cors({origin: 'https://amaccompany.onrender.com/',
-  credentials: true,
-  methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-  allowedHeaders: ['Content-Type',"Access-Control-Allow-Origin"],
-  exposedHeaders: ['Content-Type',"Access-Control-Allow-Origin"]})) 
-  
+  app.use(cors());
   const allowCrossDomain = function(req, res, next) {
     
     

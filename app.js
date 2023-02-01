@@ -97,7 +97,8 @@ console.log(req.hostname)
     // res.header('Access-Control-Allow-Credentials', false);
 
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    
+    res.header('Content-Type', 'text/plain');
+    // : text/html; charset=utf-8
     
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     

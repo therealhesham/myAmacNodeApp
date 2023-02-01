@@ -60,7 +60,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   }
   
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 var io = require('socket.io')(http, {
@@ -157,9 +157,12 @@ const mYmodel = mongoose.model("mainstore",schema)
 
 app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
+  
   res.cookie("ss","sss")
   console.log(req.headers);
+
   res.header('name', 'geeksfossrgeeks')
+  res.send(req.headers)
   res.send("data")
     // console.log(req);
 

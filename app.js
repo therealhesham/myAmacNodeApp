@@ -128,11 +128,11 @@ const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     
-    res.header("Access-Control-Allow-Credentials","true");
+    // res.header("Access-Control-Allow-Credentials","true");
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
-
+app.use(allowCrossDomain);
 const schema = new mongoose.Schema({
   store :"string",
   items:"string",
@@ -149,7 +149,7 @@ app.get('/', async (req, res) => {
 
 })
 
-    app.use(allowCrossDomain);
+    
     //some other code
 
 app.post("/registermysql",(req,res)=>

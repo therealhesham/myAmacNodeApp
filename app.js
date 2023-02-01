@@ -102,6 +102,7 @@ app.use(appThirdTransaction)
 app.use(cors({credentials:false,maxAge:5555555555,allowedHeaders:
 {'Access-Control-Allow-Origin': "https://amaccompany.onrender.com",
 'Access-Control-Allow-Origin': "https://amaccompany.onrender.com",
+'Access-Control-Allow-Origin': "amaccompany.onrender.com",
 'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app",
 'Access-Control-Allow-Origin': "my-amac-react-app.vercel.app"
 }}))

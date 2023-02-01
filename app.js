@@ -70,7 +70,7 @@ console.log(req.hostname)
   
   
   }
-  app.use(cors({origin: 'https://localhost:3001',
+  app.use(cors({origin: 'https://amaccompany.onrender.com/',
   credentials: true,
   methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
   allowedHeaders: ['Content-Type',"Access-Control-Allow-Origin"],
@@ -85,8 +85,11 @@ console.log(req.hostname)
     res.header('Access-Control-Request-Headers', 'origin, x-requested-with')
     res.header('Connection', 'keep-alive')
     
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
-    res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    res.header('Access-Control-Allow-Origin', "https://amaccompany.onrender.com/");
+    res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
     res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
     res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
     res.header('Access-Control-Allow-Origin', "localhost:3000");
@@ -197,7 +200,7 @@ module.exports.app=app
 module.exports.appEx=express
 
 
-app.listen(3000,()=> console.log("hi"))
+app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;
 
 // http.listen(process.env.PORT || 3000, () => {

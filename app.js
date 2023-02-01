@@ -91,7 +91,7 @@ console.log(req.hostname)
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-        res.header('Access-Control-Allow-Origin',"*");
+        // res.header('Access-Control-Allow-Origin',"*");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
     // res.header('Access-Control-Allow-Credentials', false);

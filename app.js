@@ -195,7 +195,7 @@ const position = req.body.position
 
 
 
-// app.options('/datapost', cors()) 
+app.options('/login', cors()) 
 
   
 app.post("/datapost",async(req,res)=>

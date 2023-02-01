@@ -102,20 +102,10 @@ app.use(appThirdTransaction)
 app.use(cors({credentials:false,maxAge:5555555555,allowedHeaders:
 {'Access-Control-Allow-Origin': "https://amaccompany.onrender.com",
 'Access-Control-Allow-Origin': "https://amaccompany.onrender.com",
-'Access-Control-Allow-Origin': "amaccompany.onrender.com",
+'Access-Control-Allow-Origin': "https://amaccompany.onrender.com",
 'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app",
 'Access-Control-Allow-Origin': "my-amac-react-app.vercel.app"
 }}))
-app.options('/login', function (req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  // res.setHeader("Access-Control-Allow-Origin", "amaccompany.onrender.com/");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.end();
-});
-app.use(appRegisterNew)
-
-app.use(preview)
 
 
 
@@ -162,6 +152,11 @@ app.get('/', async (req, res) => {
 })
 
     app.use(allowCrossDomain);
+    app.use(appLogin)
+app.use(appRegisterNew)
+
+app.use(preview)
+
     //some other code
 
 app.post("/registermysql",(req,res)=>

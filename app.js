@@ -99,7 +99,7 @@ app.use(appSecondTransaction)
 app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
-// app.use(cors({credentials:false,maxAge:5555555555}))
+app.use(cors({credentials:false,maxAge:5555555555}))
 app.use(appLogin)
 app.use(appRegisterNew)
 
@@ -109,6 +109,7 @@ app.use(preview)
 
 const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "localhost:3001");
+    res.header('vary', "Origin");
     res.header('Access-Control-Allow-Origin', "localhost:3000");
     res.header('Access-Control-Allow-Origin', "https://localhost:3000");
     res.header('Access-Control-Allow-Origin', "https://localhost:3001");

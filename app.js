@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
     }
 }));
   
-app.use(cors({credentials:false}));
+// app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)

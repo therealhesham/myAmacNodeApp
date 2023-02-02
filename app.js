@@ -152,9 +152,9 @@ module.exports.app=app
 module.exports.appEx=express
 // module.exports.allowCrossDomain=allowCrossDomai
 
-app.listen(process.env.PORT || 3000,()=> console.log("hi"))
+// app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;
 
-// http.listen(process.env.PORT || 3000, () => {
-//   console.log(process.env.PORT || 3000);
-// });
+http.listen(process.env.PORT || 3000, () => {
+  console.log(process.env.PORT || 3000);
+});

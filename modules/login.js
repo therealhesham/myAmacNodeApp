@@ -1,5 +1,7 @@
 const express = require("express")
+
 const jwt =require("jsonwebtoken")
+const { allowCrossDomain } = require("../app")
 const { loginHandleMongo } = require("./registeruser")
 require('dotenv').config({ debug: true })
 appLogin=express()
@@ -17,7 +19,7 @@ appLogin=express()
 // }
 
 
-appLogin.post("/login",async (req,res)=>{
+appLogin.post("/login",allowCrossDomain,async (req,res)=>{
 
     console.log("forLoginRote")
 const email = req.body.email

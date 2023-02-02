@@ -116,7 +116,7 @@ console.log(req.hostname)
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-  app.use(allowCrossDomain);
+  // app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)
@@ -195,7 +195,7 @@ res.header('etssssag',"hesham").send(data)
 
 module.exports.app=app
 module.exports.appEx=express
-
+module.exports.allowCrossDomain=allowCrossDomain
 
 app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;

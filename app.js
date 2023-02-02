@@ -29,17 +29,17 @@ const app = express();
 app.use(express.json())
 
 
-const { createProxyMiddleware } = require('http-proxy-middleware')
+// const { createProxyMiddleware } = require('http-proxy-middleware')
   
-  app.use('https://my-amac-react-app.vercel.app/', createProxyMiddleware({ 
-    target: '*', //original url
-    changeOrigin: true, 
-    //secure: false,
-    onProxyRes: function (proxyRes, req, res) {
-       proxyRes.headers['Access-Control-Allow-Origin'] = 'https://my-amac-react-app.vercel.app/';
-       proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
-    }
-}));
+//   app.use('https://my-amac-react-app.vercel.app/', createProxyMiddleware({ 
+//     target: '*', //original url
+//     changeOrigin: true, 
+//     //secure: false,
+//     onProxyRes: function (proxyRes, req, res) {
+//        proxyRes.headers['Access-Control-Allow-Origin'] = 'https://my-amac-react-app.vercel.app/';
+//        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
+//     }
+// }));
 app.use(cookieParser())  
 app.use(cors());
 

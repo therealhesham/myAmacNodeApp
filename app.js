@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-app.use(cors());
+app.use(cors({credentials:true}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -80,8 +80,8 @@ console.log(req.hostname)
     
     res.header('Connection', 'keep-alive')
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
-    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
-    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
+    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
+    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
     
     // res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");

@@ -71,7 +71,52 @@ console.log(req.hostname)
   
   }
   
-  // app.use(allowCrossDomain);
+  const allowCrossDomain = function(req, res, next) {
+    
+    
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "localhost:3000/");
+    
+    
+    res.header('Connection', 'keep-alive')
+    // res.set('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
+    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"});
+    res.append({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app"});
+    // res.append('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
+    // res.header('Access-Control-Allow-Origin', "localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+        // res.header('Access-Control-Allow-Origin',"*");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+    // res.header('Access-Control-Allow-Credentials', false);
+
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Content-Type', 'text/plain');
+    // : text/html; charset=utf-8
+    // 
+    // res.header('Access-Control-Allow-Headers', 'Content-Type');
+    
+    // res.set('Access-Control-Allow-Origin', "localhost:3000/");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3000");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+    // res.set('Access-Control-Allow-Origin', "http://localhost:3000");
+    // res.set('Access-Control-Allow-Origin', "http://localhost:3001");
+    // res.set('Access-Control-Allow-Origin',"*");
+    // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    
+    
+    // res.set('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  }
+  app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)
@@ -150,11 +195,11 @@ res.header('etssssag',"hesham").send(data)
 
 module.exports.app=app
 module.exports.appEx=express
-// module.exports.allowCrossDomain=allowCrossDomai
 
-// app.listen(process.env.PORT || 3000,()=> console.log("hi"))
+
+app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;
 
-http.listen(process.env.PORT || 3000, () => {
-  console.log(process.env.PORT || 3000);
-});
+// http.listen(process.env.PORT || 3000, () => {
+//   console.log(process.env.PORT || 3000);
+// });

@@ -72,7 +72,7 @@ console.log(req.hostname)
   }
   
   const allowCrossDomain = function(req, res, next) {
-    
+    // ssss
     // sss
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
     // res.header('Access-Control-Allow-Origin', "localhost:3000/");

@@ -79,12 +79,9 @@ console.log(req.hostname)
     
     
     res.header('Connection', 'keep-alive')
-    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
-    // res.append({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"})
-    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
-    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"})
     
-    // res.header('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
+    
+    res.set('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
@@ -115,7 +112,7 @@ console.log(req.hostname)
     // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     
     
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
   app.use(allowCrossDomain);

@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-app.use(cors({credentials:false}));
+app.use(cors());
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -76,7 +76,7 @@ console.log(req.hostname)
     
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
     // res.header('Access-Control-Allow-Origin', "localhost:3000/");
-    // d 
+    
     
     res.header('Connection', 'keep-alive')
     // res.set('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
@@ -117,10 +117,10 @@ console.log(req.hostname)
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-  // app.use(allowCrossDomain);
+  app.use(allowCrossDomain);
     
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

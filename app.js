@@ -41,7 +41,7 @@ app.use(express.json())
 //     }
 // }));
 app.use(cookieParser())  
-app.use(cors());
+app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -96,7 +96,7 @@ console.log(req.hostname)
         // res.header('Access-Control-Allow-Origin',"*");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-    // res.header('Access-Control-Allow-Credentials', false);
+    res.header('Access-Control-Allow-Credentials', false);
 
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Content-Type', 'text/plain');

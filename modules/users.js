@@ -20,19 +20,19 @@ isOk:{type:"Boolean",default:false}
 const sockets = mongoosetransaction.model("socket",new mongoosetransaction.Schema({firstName:"string",socketID:"string"}))
  
 
-// appGettUser.get("/userlists",async (req,res)=>{
-// try {
-//     // loginHandleMongo.find()
-// // console.log(loginHandleMongo)
-// const finder = await models.find({});
-// // console.log(finder)
-// res.send(finder)
-// } catch (error) {
-//     console.log(error)
-// }
+appGettUser.get("/userlists",async (req,res)=>{
+try {
+    // loginHandleMongo.find()
+// console.log(loginHandleMongo)
+const finder = await models.find({});
+// console.log(finder)
+res.send(finder)
+} catch (error) {
+    console.log(error)
+}
 
 
-// })
+})
 appGettUser.use(cookieParser())
 appGettUser.get("/cookire",(req,res)=>{
     var pairs = req.headers.cookie.split(';')

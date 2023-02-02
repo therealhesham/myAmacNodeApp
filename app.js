@@ -151,7 +151,7 @@ const mYmodel = mongoose.model("mainstore",schema)
 
 app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
-  res.cookie("ss","sss")
+  
   console.log(req.headers);
   res.header('name', 'geeksfossrgeeks')
   res.send("data")

@@ -4,7 +4,7 @@ const { loginHandleMongo, models } = require("./registeruser");
 const _ = require("lodash");
 const { mongoosetransaction } = require("./storepreview");
 const { default: mongoose } = require("mongoose");
-const { io } = require("../app");
+// const { io } = require("../app");
 // const  io  = require("../app");
 const jwt=require("jsonwebtoken");
 require("dotenv").config()
@@ -20,19 +20,6 @@ isOk:{type:"Boolean",default:false}
 const sockets = mongoosetransaction.model("socket",new mongoosetransaction.Schema({firstName:"string",socketID:"string"}))
  
 
-appGettUser.get("/userlists",async (req,res)=>{
-try {
-    // loginHandleMongo.find()
-// console.log(loginHandleMongo)
-const finder = await loginHandleMongo.find({});
-// console.log(finder)
-res.send(finder)
-} catch (error) {
-    console.log(error)
-}
-
-
-})
 appGettUser.use(cookieParser())
 appGettUser.get("/cookire",(req,res)=>{
     var pairs = req.headers.cookie.split(';')

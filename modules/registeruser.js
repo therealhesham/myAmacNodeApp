@@ -103,7 +103,7 @@ repeatpassword:"string",
 // nationalID:{type:"string",length:14,required:true},
 url:"string"
 }))
- 
+console.log(models) 
 appRegisterNew.get("/userlists",async (req,res)=>{
   try {
       // loginHandleMongo.find()
@@ -118,7 +118,20 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
   })
   
-
+  appRegisterNew.get("/userlists",async (req,res)=>{
+    try {
+        // loginHandleMongo.find()
+    // console.log(loginHandleMongo)
+    const finder = await loginHandleMongo.find();
+    res.send(finder)
+    
+    } catch (error) {
+        console.log(error)
+    }
+    
+    
+    })
+    
 appRegisterNew.post("/file",async(req,res)=>{
   try {
     const form = formidable({ multiples: true });

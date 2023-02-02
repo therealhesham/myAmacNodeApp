@@ -81,7 +81,7 @@ console.log(req.hostname)
     res.header('Connection', 'keep-alive')
     // res.set('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"});
-    res.append({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
+    // res.append({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
     // res.append('Access-Control-Allow-Origin', "https://my-amac-react-app.vercel.app/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");

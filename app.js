@@ -41,11 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-app.use(cors({
-  origin: 'https://my-amac-react-app.vercel.app/',
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-  credentials: true
-}));
+app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)

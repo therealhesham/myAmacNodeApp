@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-// app.use(cors({credentials:true}));
+app.use(cors());
 
 function MiddleWareFunctionForLogin(req,res,next){
 console.log(req.hostname)
@@ -115,7 +115,7 @@ console.log(req.hostname)
     // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     
     
-    // res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
   app.use(allowCrossDomain);

@@ -24,7 +24,7 @@ appGettUser.get("/userlists",async (req,res)=>{
 try {
     // loginHandleMongo.find()
 // console.log(loginHandleMongo)
-const finder = await models.find({});
+const finder = await loginHandleMongo.find({});
 // console.log(finder)
 res.send(finder)
 } catch (error) {

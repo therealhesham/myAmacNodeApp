@@ -236,7 +236,7 @@ res.cookie("token","jwter",{
   });
 // console.log(req.headers)
 
-res.send(jwter)
+// res.send(jwter)
 
 
 

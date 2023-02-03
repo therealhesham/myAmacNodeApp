@@ -9,6 +9,7 @@ const formidable = require("formidable");
 const { sockets } = require("./users");
 const { mongoosetransaction } = require("./storepreview");
 // require("dotenv").config()
+const cors=require("cors")
 const cloudinary = require('cloudinary').v2;
 appRegisterNew = express();
 // Return "https" URLs by setting secure: true
@@ -117,7 +118,7 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
   
   })
-  
+  appRegisterNew.use(cors({credentials:false}));
   appRegisterNew.get("/userlists",async (req,res)=>{
     try {
         // loginHandleMongo.find()

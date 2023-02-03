@@ -1,11 +1,9 @@
-const cookieParser = require("cookie-parser")
 const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
-
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cookieParser())
+
 
 // function Loginmiddleware(req,res,next) {
 
@@ -40,8 +38,8 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-res.cookie("token",jwter)
-res.send(jwter)
+res.cookie({"token":jwter})
+res.send(jwter)     
 
 
 

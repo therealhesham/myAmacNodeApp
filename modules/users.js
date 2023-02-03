@@ -96,6 +96,7 @@ res.send(notifications)
 })
 appGettUser.get("/falserequests",async (req,res)=>{
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    
 try{
     var pairs = req.headers.cookie.split(';')
 

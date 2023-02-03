@@ -95,7 +95,7 @@ res.send(notifications)
 
 })
 appGettUser.get("/falserequests",async (req,res)=>{
-console.log(req.path)
+    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 try{
     var pairs = req.headers.cookie.split(';')
 
@@ -109,14 +109,14 @@ try{
         const sender = cookies.token
         
         const decoder = jwt.verify(sender,process.env.MYSECRET)
-        
+        console.log(decoder)
 const notifications = await notifiy.find({firstName:decoder.firstName});
 
     
     res.send(notifications)
     
     }catch(error){
-console.log("error from token Getter")
+res.send("error from token Getter")
         
     }
     })

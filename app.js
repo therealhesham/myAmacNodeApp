@@ -24,11 +24,9 @@ const { appThirdTransaction } = require('./modules/thirdTransaction');
 const { appSpecific } = require('./modules/specific');
 const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
-const { appRegisterNew, loginHandleMongo } = require('./modules/registeruser');
+const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(express.json())
-app.use(cookieParser())  
- app.use(cors({credentials:true,maxAge:1000000}));
 
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -42,6 +40,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
 //     }
 // }));
+app.use(cookieParser())  
+// app.use(cors({credentials:true,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){
@@ -76,16 +76,6 @@ if(req.method =="GET"){
   
   const allowCrossDomain = function(req, res, next) {
     // ssss
-    res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"});
-    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    // // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    // res.header({"Access-Control-Allow-Methods": "POST,GET,OPTIONS"});
-    // res.header({"Access-Control-Allow-Credentials": "true"});
-    // res.header("Access-Control-Allow-Credentials", "true");
-    
-    // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    
     // sss
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
     // res.header('Access-Control-Allow-Origin', "localhost:3000/");
@@ -94,7 +84,7 @@ if(req.method =="GET"){
     res.header({'Connection':'keep-alive'})
     
     
-    
+    res.header({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
@@ -128,7 +118,7 @@ if(req.method =="GET"){
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-app.use(allowCrossDomain);
+  // app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)
@@ -166,7 +156,7 @@ app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
   
   console.log(req.headers);
-  res.cookie('name', 'geeksfossrgeeks')
+  res.header('name', 'geeksfossrgeeks')
   res.send("data")
     // console.log(req);
 
@@ -198,54 +188,7 @@ res.header('etssssag',"hesham").send(data)
 
 )
 
-app.post("/login",async (req,res)=>{
-  res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app/"});
-  // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-  // // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-  res.header({"Access-Control-Allow-Methods": "POST"});
-  // res.header({"Access-Control-Allow-Credentials": "true"});
-  // res.header({"Access-Control-Allow-Credentials": "true"});
-  
-  // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-  // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-  
-  // Access-Control-Allow-Headers
-const email = req.body.email
-const password = req.body.password
 
-if(!email || !password) return res.send({data:"dataNotFound"});
-
-const findUser = await loginHandleMongo.findOne({email:email,password:password})
-
-
-if (!findUser) return res.send({data:"dataNotFound"});
-
-
-
-const jwter = jwt.sign({username:findUser.username,
-  firstName:findUser.firstName,
-  url:findUser.url,id:findUser._id},process.env.MYSECRET)
-          
-
-
-// res.header("token",jwter)
-// res.header({"token":jwter})
-// res.set("token",jwter)
-res.cookie("token","jwter",{
-    maxAge: 1000000
-  });
-// console.log(req.headers)
-
-res.send(jwter)
-
-
-
-
-
-
-
-
-})
 
 
 
@@ -256,9 +199,9 @@ module.exports.app=app
 module.exports.appEx=express
 
 
-// app.listen(process.env.PORT || 3000,()=> console.log("hi"))
+app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;
 
-http.listen(process.env.PORT || 3000, () => {
-  console.log(process.env.PORT || 3000);
-});
+// http.listen(process.env.PORT || 3000, () => {
+//   console.log(process.env.PORT || 3000);
+// });

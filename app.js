@@ -127,7 +127,7 @@ if(req.method =="GET"){
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-  app.use(allowCrossDomain);
+app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)
@@ -145,7 +145,7 @@ app.use(appPostNewDataTostore)
 app.use(appSecondTransaction)
 
 app.use(appFourthTransction)
-app.use(helmet())
+// app.use(helmet())
 app.use(appThirdTransaction)
 
 app.use(appLogin)

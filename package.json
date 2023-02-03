@@ -134,6 +134,8 @@
     "type-is": "^1.6.18",
     "uid-safe": "^2.1.5",
     "undefsafe": "^2.0.5",
+    "universal-cookie": "^4.0.4",
+    "universal-cookie-express": "^4.0.3",
     "unpipe": "^1.0.0",
     "utils-merge": "^1.0.1",
     "uuid": "^8.3.2",

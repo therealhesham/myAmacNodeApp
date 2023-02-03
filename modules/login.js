@@ -1,6 +1,7 @@
 const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
+const Cookies = require("universal-cookie")
 require('dotenv').config({ debug: true })
 appLogin=express()
 
@@ -47,7 +48,9 @@ const jwter = jwt.sign({username:findUser.username,
 // res.header("token",jwter)
 // res.header({"token":jwter})
 // res.set("token",jwter)
-res.cookie("token",jwter)
+res.cookie("token",jwter,{
+      maxAge: 10000000000000,
+    });
 // console.log(req.headers)
 
 res.set("token",jwter).send(jwter)

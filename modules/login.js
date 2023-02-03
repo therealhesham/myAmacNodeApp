@@ -18,7 +18,7 @@ appLogin=express()
 
 
 appLogin.post("/login",async (req,res)=>{
-    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 
 const email = req.body.email
 const password = req.body.password
@@ -38,10 +38,10 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-res.cookie("token",jwter).send(jwter)     
+res.cookie("token",jwter)
 
 
-
+res.send(jwter)
 
 
 

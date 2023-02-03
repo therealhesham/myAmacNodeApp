@@ -44,7 +44,7 @@ app.use(cookieParser())
 app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
-console.log(req.hostname)
+
 
   try {
     if( req.method == "GET"){
@@ -118,7 +118,7 @@ console.log(req.hostname)
   app.use(allowCrossDomain);
     
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

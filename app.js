@@ -121,7 +121,7 @@ if(req.method =="GET"){
   // app.use(allowCrossDomain);
     
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

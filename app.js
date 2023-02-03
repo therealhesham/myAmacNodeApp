@@ -117,7 +117,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   // app.use(allowCrossDomain);
     
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

@@ -22,7 +22,9 @@ appLogin.post("/login",async (req,res)=>{
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.set({"Access-Control-Allow-Methods": "Options , PUT ,POST,GET"});
+    res.header({"Access-Control-Allow-Methods": "POST"});
+    res.header({"Access-Control-Allow-Credentials": "true"});
+    
     res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     
@@ -49,7 +51,7 @@ const jwter = jwt.sign({username:findUser.username,
 // res.header({"token":jwter})
 // res.set("token",jwter)
 res.cookie("token",jwter,{
-      maxAge: 10000000000000,
+      maxAge: 10000,
     });
 // console.log(req.headers)
 

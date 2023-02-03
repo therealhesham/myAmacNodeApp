@@ -76,6 +76,15 @@ if(req.method =="GET"){
   
   const allowCrossDomain = function(req, res, next) {
     // ssss
+    res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    res.header({"Access-Control-Allow-Methods": "POST"});
+    res.header({"Access-Control-Allow-Credentials": "true"});
+    
+    res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    
     // sss
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
     // res.header('Access-Control-Allow-Origin', "localhost:3000/");
@@ -118,7 +127,7 @@ if(req.method =="GET"){
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-  // app.use(allowCrossDomain);
+  app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)

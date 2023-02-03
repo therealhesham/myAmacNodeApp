@@ -44,7 +44,7 @@ app.use(cookieParser())
 app.use(cors({credentials:false}));
 
 function MiddleWareFunctionForLogin(req,res,next){
-
+if(req.method =="GET"){
 
   try {
     
@@ -67,7 +67,11 @@ function MiddleWareFunctionForLogin(req,res,next){
   }
   
   
-  
+  }else if(req.method =="POST")
+  {
+    console.log("success")
+    next()
+  }
   }
   
   const allowCrossDomain = function(req, res, next) {
@@ -117,7 +121,7 @@ function MiddleWareFunctionForLogin(req,res,next){
   // app.use(allowCrossDomain);
     
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 
@@ -193,7 +197,7 @@ res.header('etssssag',"hesham").send(data)
 
 module.exports.app=app
 module.exports.appEx=express
-module.exports.check=MiddleWareFunctionForLogin;
+
 
 app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;

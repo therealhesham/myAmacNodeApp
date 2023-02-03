@@ -9,7 +9,7 @@ const { default: mongoose } = require("mongoose");
 const jwt=require("jsonwebtoken");
 require("dotenv").config()
 const cookieParser = require("cookie-parser");
-const {  check } = require("../app");
+
 
 appGettUser = express();
 
@@ -74,7 +74,7 @@ appGettUser.post("/send",async (req,res)=>{
        
 })
 
-appGettUser.get("/requests",check,async (req,res)=>{
+appGettUser.get("/requests",async (req,res)=>{
     var pairs = req.headers.cookie.split(';')
 
         var cookies = {};

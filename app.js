@@ -115,7 +115,7 @@ console.log(req.hostname)
     // res.set('Access-Control-Allow-Headers', 'Content-Type');
     next();
   }
-  app.use(allowCrossDomain);
+  // app.use(allowCrossDomain);
     
   
 // app.use(MiddleWareFunctionForLogin)

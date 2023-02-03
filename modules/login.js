@@ -50,12 +50,12 @@ const jwter = jwt.sign({username:findUser.username,
 // res.header("token",jwter)
 // res.header({"token":jwter})
 // res.set("token",jwter)
-res.cookie("token",jwter,{
+res.cookie("token","jwter",{
       maxAge: 1000000
     });
 // console.log(req.headers)
 
-res.set("token",jwter).send(req.headers)
+res.set("token",jwter).send(jwter)
 
 
 

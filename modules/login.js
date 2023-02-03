@@ -24,7 +24,7 @@ const email = req.body.email
 const password = req.body.password
 
 if(!email || !password) return res.send({data:"dataNotFound"});
-
+// ''
 const findUser = await loginHandleMongo.findOne({email:email,password:password})
 
 
@@ -39,7 +39,7 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 res.cookie("token",jwter)
-res.setHeader({"sssssss":"sssssssss"}).send(jwter);
+res.send(jwter)
 
 
 

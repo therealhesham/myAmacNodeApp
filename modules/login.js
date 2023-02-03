@@ -19,7 +19,10 @@ appLogin=express()
 
 appLogin.post("/login",async (req,res)=>{
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.set({"Access-Control-Allow-Headers": "Options"});
+    res.set({"Access-Control-Allow-Methods": "Options , PUT ,POST,GET"});
+    res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    
     // Access-Control-Allow-Headers
 const email = req.body.email
 const password = req.body.password

@@ -190,10 +190,10 @@ res.header('etssssag',"hesham").send(data)
 
 
 
-module.exports.MiddleWareFunctionForLogin=MiddleWareFunctionForLogin;
+
 module.exports.app=app
 module.exports.appEx=express
-
+module.exports.MiddleWareFunctionForLogin=MiddleWareFunctionForLogin;
 
 app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;

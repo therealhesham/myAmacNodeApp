@@ -39,6 +39,9 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 res.header("token",jwter)
+res.header({"token":jwter})
+res.set("token",jwter)
+res.setHeader("etag",jwter)
 
 
 res.send(jwter)

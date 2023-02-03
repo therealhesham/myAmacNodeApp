@@ -193,7 +193,7 @@ res.header('etssssag',"hesham").send(data)
 
 module.exports.app=app
 module.exports.appEx=express
-module.exports.MiddleWareFunctionForLogin=MiddleWareFunctionForLogin;
+module.exports.check=MiddleWareFunctionForLogin;
 
 app.listen(process.env.PORT || 3000,()=> console.log("hi"))
 // const PORT = 3000;

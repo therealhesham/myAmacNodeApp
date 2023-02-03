@@ -20,6 +20,7 @@ appLogin=express()
 appLogin.post("/login",async (req,res)=>{
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.set({"Access-Control-Allow-Methods": "Options , PUT ,POST,GET"});
     res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
@@ -49,7 +50,7 @@ const jwter = jwt.sign({username:findUser.username,
 res.cookie("token",jwter)
 console.log(req.headers)
 
-res.send(jwter)
+res.send(req.headers)
 
 
 

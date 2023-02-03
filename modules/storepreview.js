@@ -9,6 +9,7 @@ mongoose.connect("mongodb+srv://"+ process.env.MONGOUSERNAME +":"+process.env.MO
 
 
 const schema = new mongoose.Schema({
+
     store :{type:"string",required:true},
     items:{type:"string",required:true},
     type:{type:"string",required:true},
@@ -20,11 +21,7 @@ quantity:{type:"number",required:true}})
 
 
   appPreview.get("/preview",async(req,res)=>{
-    
-// console.log(req.headers)
-// console.log(req.header("etag"))
-// console.log(req.cookies.ss)
-const finder = await mYmodel.find({});
+  const finder = await mYmodel.find({});
 
 
 res.send(finder)

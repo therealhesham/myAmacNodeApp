@@ -104,7 +104,7 @@ repeatpassword:"string",
 // nationalID:{type:"string",length:14,required:true},
 url:"string"
 }))
-console.log(models) 
+
 appRegisterNew.get("/userlists",async (req,res)=>{
   try {
       // loginHandleMongo.find()
@@ -118,7 +118,7 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
   
   })
-  appRegisterNew.use(cors({credentials:false}));
+  
   appRegisterNew.get("/userlists",async (req,res)=>{
     try {
         // loginHandleMongo.find()

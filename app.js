@@ -79,11 +79,11 @@ if(req.method =="GET"){
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.header({"Access-Control-Allow-Methods": "POST"});
+    res.header({"Access-Control-Allow-Methods": "POST,GET,OPTIONS"});
     res.header({"Access-Control-Allow-Credentials": "true"});
     
-    res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     
     // sss
     // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
@@ -93,7 +93,7 @@ if(req.method =="GET"){
     res.header({'Connection':'keep-alive'})
     
     
-    res.header({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
+    
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
     // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");

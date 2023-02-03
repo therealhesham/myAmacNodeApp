@@ -47,7 +47,7 @@ function MiddleWareFunctionForLogin(req,res,next){
 
 
   try {
-    if( req.method == "GET"){
+    
     var pairs = req.headers.cookie.split(';')
   
     var cookies = {};
@@ -59,9 +59,8 @@ function MiddleWareFunctionForLogin(req,res,next){
     
     const sender = cookies.token
     const decoder = jwt.verify(sender,process.env.MYSECRET)
-    if(decoder) next()}
-
-    
+    if(decoder) next()
+ 
   
   } catch (error) {
     res.send("not authenticated")

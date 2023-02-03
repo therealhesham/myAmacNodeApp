@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-app.use(cors({credentials:false}));
+app.use(cors({credentials:true,maxAge:555555555}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){

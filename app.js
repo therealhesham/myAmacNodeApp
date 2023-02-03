@@ -27,6 +27,8 @@ const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(express.json())
+app.use(cookieParser())  
+ app.use(cors({credentials:true,maxAge:1000000}));
 
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -40,8 +42,6 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
 //     }
 // }));
-app.use(cookieParser())  
- app.use(cors({credentials:false,maxAge:555555555555}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){
@@ -145,7 +145,7 @@ app.use(appPostNewDataTostore)
 app.use(appSecondTransaction)
 
 app.use(appFourthTransction)
-// app.use(helmet())
+app.use(helmet())
 app.use(appThirdTransaction)
 
 app.use(appLogin)
@@ -165,7 +165,7 @@ app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
   
   console.log(req.headers);
-  res.header('name', 'geeksfossrgeeks')
+  res.cookie('name', 'geeksfossrgeeks')
   res.send("data")
     // console.log(req);
 

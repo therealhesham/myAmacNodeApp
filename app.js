@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
- app.use(cors({credentials:false,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
+ app.use(cors({credentials:false,maxAge:555555555555}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){

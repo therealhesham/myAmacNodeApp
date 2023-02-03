@@ -81,6 +81,7 @@ if(req.method =="GET"){
     // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.header({"Access-Control-Allow-Methods": "POST,GET,OPTIONS"});
     res.header({"Access-Control-Allow-Credentials": "true"});
+    res.header("Access-Control-Allow-Credentials", "true");
     
     // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
@@ -203,9 +204,10 @@ app.post("/login",async (req,res)=>{
   // // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
   res.header({"Access-Control-Allow-Methods": "POST"});
   res.header({"Access-Control-Allow-Credentials": "true"});
+  // res.header({"Access-Control-Allow-Credentials": "true"});
   
   // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-  res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+  // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
   
   // Access-Control-Allow-Headers
 const email = req.body.email

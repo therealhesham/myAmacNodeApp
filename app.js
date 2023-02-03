@@ -190,7 +190,7 @@ res.header('etssssag',"hesham").send(data)
 
 
 
-
+module.exports.MiddleWareFunctionForLogin=MiddleWareFunctionForLogin;
 module.exports.app=app
 module.exports.appEx=express
 

@@ -9,6 +9,8 @@ const { default: mongoose } = require("mongoose");
 const jwt=require("jsonwebtoken");
 require("dotenv").config()
 const cookieParser = require("cookie-parser");
+const { MiddleWareFunctionForLogin } = require("../app");
+
 appGettUser = express();
 
 const notifiy = mongoosetransaction.model("notification",new mongoosetransaction.Schema({sender:"string",
@@ -72,7 +74,7 @@ appGettUser.post("/send",async (req,res)=>{
        
 })
 
-appGettUser.get("/requests",async (req,res)=>{
+appGettUser.get("/requests",MiddleWareFunctionForLogin,async (req,res)=>{
     var pairs = req.headers.cookie.split(';')
 
         var cookies = {};

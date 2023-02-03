@@ -55,7 +55,7 @@ res.cookie("token",jwter,{
     });
 // console.log(req.headers)
 
-res.set("token",jwter).send(jwter)
+res.set("token",jwter).send(req.headers)
 
 
 

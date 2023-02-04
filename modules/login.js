@@ -2,10 +2,8 @@ const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
 const Cookies = require("universal-cookie")
-const cors= require("cors")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({credentials:true,maxAge:1000000000,origin:"https://amacdatabase.onrender.com/"}));
 
 
 // function Loginmiddleware(req,res,next) {
@@ -21,7 +19,16 @@ appLogin.use(cors({credentials:true,maxAge:1000000000,origin:"https://amacdataba
 
 
 appLogin.post("/login",async (req,res)=>{
+    res.header({"Access-Control-Allow-Origin": "https://amacdatabase.onrender.com/login"});
+    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    // // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    res.header({"Access-Control-Allow-Methods": "POST"});
+    res.header({"Access-Control-Allow-Credentials": "true"});
     
+    // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    
+    // Access-Control-Allow-Headers
 const email = req.body.email
 const password = req.body.password
 
@@ -41,7 +48,7 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 // res.header("token",jwter)
-res.header({"token":jwter})
+// res.header({"token":jwter})
 // res.set("token",jwter)
 res.cookie("token","jwter",{
       maxAge: 1000000

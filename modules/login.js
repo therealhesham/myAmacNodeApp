@@ -5,7 +5,7 @@ const Cookies = require("universal-cookie")
 const cors= require("cors")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({credentials:true,maxAge:1000000000,origin:"https://my-amac-react-app.vercel.app"}));
+appLogin.use(cors({credentials:true,maxAge:1000000000,origin:"https://amacdatabase.onrender.com/"}));
 
 
 // function Loginmiddleware(req,res,next) {

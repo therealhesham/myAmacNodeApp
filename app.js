@@ -27,7 +27,7 @@ const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(cookieParser())  
-app.use(cors({credentials:true,maxAge:1000000000,origin:"https://my-amac-react-app.vercel.app"}));
+app.use(cors({credentials:true,maxAge:1000000000,origin:"https://amacdatabase.onrender.com/"}));
 
 
 // app.use(function(req, res, next) {

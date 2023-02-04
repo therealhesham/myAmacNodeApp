@@ -26,6 +26,18 @@ const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
+app.use(function(req, res, next) {
+      // res.header("Access-Control-Allow-Origin", "*");
+      const allowedOrigins = ['http://localhost:3000', 'http://my-amac-react-app.vercel.app', 'https://my-amac-react-app.vercel.app'];
+      const origin = req.headers.origin;
+      if (allowedOrigins.includes(origin)) {
+           res.setHeader('Access-Control-Allow-Origin', origin);
+      }
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+      res.header("Access-Control-Allow-credentials", true);
+      res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
+      next();
+    });
 app.use(express.json())
 
 
@@ -74,50 +86,50 @@ if(req.method =="GET"){
   }
   }
   
-  const allowCrossDomain = function(req, res, next) {
-    // ssss
-    // sss
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
-    // res.header('Access-Control-Allow-Origin', "localhost:3000/");
+  // const allowCrossDomain = function(req, res, next) {
+  //   // ssss
+  //   // sss
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3000/");
+  //   // res.header('Access-Control-Allow-Origin', "localhost:3000/");
     
     
-    res.header({'Connection':'keep-alive'})
+  //   res.header({'Connection':'keep-alive'})
     
     
-    res.header({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
-    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
-    // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
-    // res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
-    // res.header('Access-Control-Allow-Origin', "localhost:3000");
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3000");
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-    // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
-        // res.header('Access-Control-Allow-Origin',"*");
-    // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-    // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
-    // res.header('Access-Control-Allow-Credentials', false);
+  //   res.header({'Access-Control-Allow-Origin': "https://my-amac-react-app.vercel.app/"});
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3001/");
+  //   // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+  //   // res.header('Access-Control-Allow-Origin', "http://localhost:3000/");
+  //   // res.header('Access-Control-Allow-Origin', "http://localhost:3001/");
+  //   // res.header('Access-Control-Allow-Origin', "localhost:3000");
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3000");
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+  //   // res.header('Access-Control-Allow-Origin', "https://localhost:3001");
+  //       // res.header('Access-Control-Allow-Origin',"*");
+  //   // res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+  //   // res.header('Access-Control-Allow-Origin', "http://localhost:3001");
+  //   // res.header('Access-Control-Allow-Credentials', false);
 
-    res.header({'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'});
-    res.header({'Content-Type': 'text/plain'});
-    // : text/html; charset=utf-8
-    // 
-    // res.header('Access-Control-Allow-Headers', 'Content-Type');
+  //   res.header({'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'});
+  //   res.header({'Content-Type': 'text/plain'});
+  //   // : text/html; charset=utf-8
+  //   // 
+  //   // res.header('Access-Control-Allow-Headers', 'Content-Type');
     
-    // res.set('Access-Control-Allow-Origin', "localhost:3000/");
-    // res.set('Access-Control-Allow-Origin', "https://localhost:3000");
-    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
-    // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
-    // res.set('Access-Control-Allow-Origin', "http://localhost:3000");
-    // res.set('Access-Control-Allow-Origin', "http://localhost:3001");
-    // res.set('Access-Control-Allow-Origin',"*");
-    // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  //   // res.set('Access-Control-Allow-Origin', "localhost:3000/");
+  //   // res.set('Access-Control-Allow-Origin', "https://localhost:3000");
+  //   // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+  //   // res.set('Access-Control-Allow-Origin', "https://localhost:3001");
+  //   // res.set('Access-Control-Allow-Origin', "http://localhost:3000");
+  //   // res.set('Access-Control-Allow-Origin', "http://localhost:3001");
+  //   // res.set('Access-Control-Allow-Origin',"*");
+  //   // res.set('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     
     
-    // res.set('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  }
+  //   // res.set('Access-Control-Allow-Headers', 'Content-Type');
+  //   next();
+  // }
   // app.use(allowCrossDomain);
     
   

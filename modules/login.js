@@ -4,8 +4,10 @@ const { loginHandleMongo } = require("./registeruser")
 const Cookies = require("universal-cookie")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(function MidLogin(req,res,next){
 
+
+
+appLogin.post("/login",async (req,res)=>{
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
@@ -14,12 +16,7 @@ appLogin.use(function MidLogin(req,res,next){
     
     res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    next()
-}
-
-)
-appLogin.post("/login",async (req,res)=>{
-  
+    
     // Access-Control-Allow-Headers
 const email = req.body.email
 const password = req.body.password

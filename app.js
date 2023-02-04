@@ -43,6 +43,27 @@ app.use(cookieParser())
 //     });
 app.use(express.json())
 
+app.use(userList)
+var http = require('http').createServer(app)
+
+
+
+// app.use(morgan("tiny"))
+app.use(appDelete)
+app.use(appSpecific)
+// app.use(appregister)
+app.use(transactRoute)
+app.use(appPostNewDataTostore)
+app.use(appSecondTransaction)
+
+app.use(appFourthTransction)
+app.use(helmet())
+app.use(appThirdTransaction)
+
+app.use(appLogin)
+app.use(appRegisterNew)
+
+app.use(preview)
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
   
@@ -135,28 +156,7 @@ if(req.method =="GET"){
   // app.use(allowCrossDomain);
     
   
-app.use(MiddleWareFunctionForLogin)
-app.use(userList)
-var http = require('http').createServer(app)
-
-
-
-// app.use(morgan("tiny"))
-app.use(appDelete)
-app.use(appSpecific)
-// app.use(appregister)
-app.use(transactRoute)
-app.use(appPostNewDataTostore)
-app.use(appSecondTransaction)
-
-app.use(appFourthTransction)
-app.use(helmet())
-app.use(appThirdTransaction)
-
-app.use(appLogin)
-app.use(appRegisterNew)
-
-app.use(preview)
+// app.use(MiddleWareFunctionForLogin)
 
 
 

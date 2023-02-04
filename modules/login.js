@@ -6,20 +6,9 @@ require('dotenv').config({ debug: true })
 appLogin=express()
 
 
-// function Loginmiddleware(req,res,next) {
-
-// const getcookies = req.cookies(etagheader)
-// if (!getcookies){
-
-// }
-
-
-
-// }
-
 
 appLogin.post("/login",async (req,res)=>{
-    res.header({"Access-Control-Allow-Origin": "https://amacdatabase.onrender.com/"});
+    res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     // // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
     res.header({"Access-Control-Allow-Methods": "POST"});

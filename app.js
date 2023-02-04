@@ -41,7 +41,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-// app.use(cors({credentials:true,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
+app.use(cors({credentials:true,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){
@@ -121,7 +121,7 @@ if(req.method =="GET"){
   // app.use(allowCrossDomain);
     
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

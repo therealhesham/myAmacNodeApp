@@ -26,7 +26,7 @@ appLogin.post("/login",async (req,res)=>{
     res.header({"Access-Control-Allow-Credentials": "true"});
     
     // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
+    // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
     
     // Access-Control-Allow-Headers
 const email = req.body.email

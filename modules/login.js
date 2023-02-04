@@ -2,8 +2,10 @@ const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
 const Cookies = require("universal-cookie")
+const cors= require("cors")
 require('dotenv').config({ debug: true })
 appLogin=express()
+appLogin.use(cors({credentials:true,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
 
 
 // function Loginmiddleware(req,res,next) {

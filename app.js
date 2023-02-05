@@ -31,8 +31,8 @@ const app = express();
 app.use(express.json())
 
 const allowCrossDomain = function(req, res, next) {
-  res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-  res.header({"Access-Control-Allow-Credential": true});
+  res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+  res.set({"Access-Control-Allow-Credential": true});
   next();
 }
 app.use(allowCrossDomain);

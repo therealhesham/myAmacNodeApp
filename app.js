@@ -29,14 +29,14 @@ const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 
 app.use(express.json())
-
-const allowCrossDomain = function(req, res, next) {
-  res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-  res.set({"Access-Control-Allow-Credential": true});
-  // res.set({"content-type": "application/json"});
-  next();
-}
-app.use(allowCrossDomain);
+app.use(cors({credentials:false,maxAge:100000000,origin:"*"}));
+// const allowCrossDomain = function(req, res, next) {
+//   res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+//   res.set({"Access-Control-Allow-Credential": true});
+//   // res.set({"content-type": "application/json"});
+//   next();
+// }
+// app.use(allowCrossDomain);
   
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
@@ -51,7 +51,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //     }
 // }));
 app.use(cookieParser())  
-// app.use(cors({credentials:false,maxAge:555555555555,origin:"https://my-amac-react-app.vercel.app"}));
+
 
 function MiddleWareFunctionForLogin(req,res,next){
 if(req.method =="GET"){

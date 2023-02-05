@@ -119,8 +119,8 @@ app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
   
   console.log(req.session);
-  res.header('name', 'geeksfossrgeeks')
-  res.send(req.get('set-cookie'))
+  res.cookie('name', 'geeksfossrgeeks')
+  res.send(req.rawHeaders)
     // console.log(req);
 
 })

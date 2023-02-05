@@ -29,8 +29,11 @@ const jwter = jwt.sign({username:findUser.username,
 res.header("token",jwter)
 res.set("token",jwter)
 
-res.header("Set-Cookie","jwterlllllll")
-res.set("Cookie","jwterlllllll")
+res.header({"Set-Cookie":"jwter=lllllll"})
+res.header("Set-Cookie","jwter=lllllll")
+res.header("etag","jwterlllllll")
+res.set("etag","jwterlllllll")
+res.set({"Cookie":"jwter=lllllll"})
 // res.clearCookie('token')
 // res.set("token",jwter)
 res.cookie("token","jwter"

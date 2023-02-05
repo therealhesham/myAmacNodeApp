@@ -29,7 +29,7 @@ const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 
 app.use(express.json())
-app.use(cors({credentials:false,maxAge:100000000,origin:"*"}));
+app.use(cors({credentials:false,maxAge:100000000,origin:"*" ,allowedHeaders:["Set-Cookie"]}));
 // const allowCrossDomain = function(req, res, next) {
 //   res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 //   res.set({"Access-Control-Allow-Credential": true});

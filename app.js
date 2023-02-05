@@ -121,7 +121,7 @@ app.get('/', async (req, res) => {
   
   console.log(req.session);
   // res.cookie('name', 'geeksfossrgeeks')
-  res.send(req.rawHeaders)
+  res.send(req.session)
     // console.log(req);
 
 })

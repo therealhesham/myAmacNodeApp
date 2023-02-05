@@ -44,7 +44,7 @@ res.cookie("token","jwter"
 );
 
 
-res.send({data:req.rawheaders})
+res.send({data:req.headers})
 
 
 

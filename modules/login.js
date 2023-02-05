@@ -6,7 +6,8 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-app.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
+appLogin.use(express.json())
+appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
 appLogin.post("/login",async (req,res)=>{
@@ -28,25 +29,25 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-// res.header("token",jwter)
+res.header("token",jwter)
+res.set("token",jwter)
+
+res.header({"Set-Cookie":"jwter=lllllll"})
+res.header("Set-Cookie","jwter=lllllll")
+res.header({"etag":"jwterlllllll"})
+res.set("etag","jwterlllllll")
+res.set({"Cookie":"jwter=lllllll"})
+res.setHeader({"eTag":"jwterlllllll"})
+// res.clearCookie('token')
 // res.set("token",jwter)
-
-// res.header({"Set-Cookie":"jwter=lllllll"})
-// res.header("Set-Cookie","jwter=lllllll")
-// res.header({"etag":"jwterlllllll"})
-// res.set("etag","jwterlllllll")
-// res.set({"Cookie":"jwter=lllllll"})
-// res.setHeader({"eTag":"jwterlllllll"})
-// // res.clearCookie('token')
-// // res.set("token",jwter)
-// res.cookie("token","jwter"
-// // ,{
-// //       maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false 
-// // }
-// );
+res.cookie("token","jwter"
+// ,{
+//       maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false 
+// }
+);
 
 
-res.send({data:req.headers})
+res.send({data:req.session})
 
 
 

@@ -7,11 +7,11 @@ const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
 appLogin.use(express.json())
-appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
+// appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
 appLogin.post("/login",async (req,res)=>{
-req.session.name ="hesham"
+// req.session.name ="hesham"
 const email = req.body.email
 const password = req.body.password
 
@@ -37,7 +37,7 @@ res.header("Set-Cookie","jwter=lllllll")
 res.header({"etag":"jwterlllllll"})
 res.set("etag","jwterlllllll")
 res.set({"Cookie":"jwter=lllllll"})
-res.setHeader({"eTag":"jwterlllllll"})
+// res.setHeader({"eTag":"jwterlllllll"})
 // res.clearCookie('token')
 // res.set("token",jwter)
 res.cookie("token","jwter"

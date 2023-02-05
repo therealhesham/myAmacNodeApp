@@ -28,10 +28,10 @@ const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
-app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 app.use(cookieParser())  
 app.use(express.json())
-
+app.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
+app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 // const allowCrossDomain = function(req, res, next) {
 //   res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 //   res.set({"Access-Control-Allow-Credential": true});
@@ -122,7 +122,7 @@ app.get('/', async (req, res) => {
   
   console.log(req.session);
   // res.cookie('name', 'geeksfossrgeeks')
-  res.send(req.session)
+  res.send(req.rawHeaders)
     // console.log(req);
 
 })

@@ -43,7 +43,7 @@ res.cookie("token","jwter"
 );
 
 
-res.send({data:req.rawHeaders})
+res.send({data:req.headers})
 
 
 

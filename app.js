@@ -5,6 +5,7 @@ const mysql = require("mysql")
 const jwt = require("jsonwebtoken")
 const cookieSession = require('cookie-session')
 const cors = require('cors');
+const session = require("express-session")
 const { body, check } = require('express-validator');
 const session = require('express-session');
 const cookieParser = require("cookie-parser");
@@ -27,7 +28,7 @@ const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
-// app.use(cookieParser())  
+app.use(cookieParser())  
 app.use(express.json())
 app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 // const allowCrossDomain = function(req, res, next) {
@@ -38,7 +39,7 @@ app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-ap
 // }
 // app.use(allowCrossDomain);
   
-
+app.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 const { createProxyMiddleware } = require('http-proxy-middleware')
   
 //   app.use('/*', createProxyMiddleware({ 
@@ -144,7 +145,7 @@ const data = new mYmodel({store :req.body.store,
 // const findToValidateSonething = await mYmodel.findOne({store:data.store})
 // if(findToValidateSonething) return res.send("previously registered")
 const saver = await data.save()
-res.header('etssssag',"hesham").send(data)
+res.header('etssssag',"hesham").send(req.session.name)
 
 // console.log(saver);
 }

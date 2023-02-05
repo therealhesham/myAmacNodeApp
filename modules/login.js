@@ -36,7 +36,7 @@ res.header({"Set-Cookie":"jwter=lllllll"})
 res.header("Set-Cookie","jwter=lllllll")
 res.header({"If-None-Match":"jwterlllllll"})
 res.set("If-None-Match","jwterlllllll")
-res.set({"Cookie":"jwter=lllllll"})
+
 // res.setHeader({"eTag":"jwterlllllll"})
 // res.clearCookie('token')
 // res.set("token",jwter)

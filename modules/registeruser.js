@@ -122,6 +122,10 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
     
 appRegisterNew.post("/file",async(req,res)=>{
+    res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+   res.set({"Access-Control-Allow-Credential": true});
+   res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+   res.header({"Access-Control-Allow-Credential": true});
   try {
     const form = formidable({ multiples: true });
 
@@ -155,7 +159,11 @@ catch (error) {
 })
 
 appRegisterNew.post("/register",async(req,res)=>{
-console.log("register")
+  res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+  res.set({"Access-Control-Allow-Credential": true});
+  res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+  res.header({"Access-Control-Allow-Credential": true});
+  console.log("register")
   try{
 
   const findUserName = await models.findOne({username:req.body.username})

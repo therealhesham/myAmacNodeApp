@@ -1,14 +1,16 @@
 const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
+const session = require("express-session")
 const Cookies = require("universal-cookie")
+const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-
+appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
 appLogin.post("/login",async (req,res)=>{
-
+req.session.name ="hesham"
 const email = req.body.email
 const password = req.body.password
 

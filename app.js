@@ -27,9 +27,9 @@ const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
-
+app.use(cookieParser())  
 app.use(express.json())
-app.use(cors({credentials:false,maxAge:100000000,origin:"*" ,allowedHeaders:["Set-Cookie"]}));
+app.use(cors({credentials:false,maxAge:100000000,origin:"*" }));
 // const allowCrossDomain = function(req, res, next) {
 //   res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 //   res.set({"Access-Control-Allow-Credential": true});
@@ -50,7 +50,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 //        proxyRes.headers['Access-Control-Allow-Methods'] = ['GET','POST','HEAD','PUT','PATCH','DELETE'];
 //     }
 // }));
-app.use(cookieParser())  
+
 
 
 function MiddleWareFunctionForLogin(req,res,next){

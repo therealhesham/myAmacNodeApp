@@ -29,7 +29,7 @@ const jwter = jwt.sign({username:findUser.username,
 // res.header("token",jwter)
 // res.header({"token":jwter})
 // res.set("token",jwter)
-res.cookie("token","jwter",{
+res.cookie({"token":"jwter"},{
       maxAge:  24*60*60 * 1000
 });
 

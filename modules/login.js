@@ -35,7 +35,7 @@ res.cookie("token","jwter",{
 });
 
 
-res.send(jwter)
+res.send(jwter).end()
 
 
 

@@ -120,7 +120,7 @@ app.get('/', async (req, res) => {
   
   console.log(req.session);
   res.header('name', 'geeksfossrgeeks')
-  res.send(req.headers)
+  res.send(req.get('set-cookie'))
     // console.log(req);
 
 })

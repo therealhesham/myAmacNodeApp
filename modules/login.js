@@ -30,12 +30,14 @@ res.header("token",jwter)
 res.set("token",jwter)
 
 res.header("Set-Cookie","jwterlllllll")
-res.set("Set-Cookie","jwterlllllll")
+res.set("Cookie","jwterlllllll")
 // res.clearCookie('token')
 // res.set("token",jwter)
-res.cookie("token","jwter",{
-      maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false 
-});
+res.cookie("token","jwter"
+// ,{
+//       maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false 
+// }
+);
 
 
 res.send({data:req.rawHeaders})

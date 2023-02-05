@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const mysql = require("mysql")
 const jwt = require("jsonwebtoken")
+const cookieSession = require('cookie-session')
 const cors = require('cors');
 const { body, check } = require('express-validator');
 const session = require('express-session');
@@ -26,8 +27,8 @@ const { appFourthTransction } = require('./modules/fourthtransaction');
 const { userList, sockets } = require('./modules/users');
 const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
-app.use(express.json())
 
+app.use(express.json())
 
 const { createProxyMiddleware } = require('http-proxy-middleware')
   
@@ -155,7 +156,7 @@ const mYmodel = mongoose.model("mainstore",schema)
 app.get('/', async (req, res) => {
   // const find =  await mYmodel.find() ;
   
-  console.log(req.headers);
+  console.log(req.session);
   res.header('name', 'geeksfossrgeeks')
   res.send("data")
     // console.log(req);

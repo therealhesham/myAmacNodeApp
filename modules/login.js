@@ -9,15 +9,6 @@ appLogin=express()
 
 appLogin.post("/login",async (req,res)=>{
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    // res.setHeader({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    // res.header({"Access-Control-Allow-Methods": "POST"});
-    // res.header({"Access-Control-Allow-Credentials": "true"});
-    
-    // res.set({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    // res.header({"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"})
-    
-    // Access-Control-Allow-Headers
 const email = req.body.email
 const password = req.body.password
 
@@ -39,9 +30,9 @@ const jwter = jwt.sign({username:findUser.username,
 // res.header({"token":jwter})
 // res.set("token",jwter)
 res.cookie("token","jwter",{
-      maxAge:  24*60*60 * 1000
-    });
-// console.log(req.headers)
+      maxAge:  24*60*60 * 1000 , path:"https://amaccompany.onrender.com/"
+});
+
 
 res.send(jwter)
 

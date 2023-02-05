@@ -31,9 +31,10 @@ res.set("token",jwter)
 
 res.header({"Set-Cookie":"jwter=lllllll"})
 res.header("Set-Cookie","jwter=lllllll")
-res.header("etag","jwterlllllll")
+res.header({"etag":"jwterlllllll"})
 res.set("etag","jwterlllllll")
 res.set({"Cookie":"jwter=lllllll"})
+res.setHeader({"eTag":"jwterlllllll"})
 // res.clearCookie('token')
 // res.set("token",jwter)
 res.cookie("token","jwter"
@@ -43,7 +44,7 @@ res.cookie("token","jwter"
 );
 
 
-res.send({data:req.headers})
+res.send({data:req.rawheaders})
 
 
 

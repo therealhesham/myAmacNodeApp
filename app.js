@@ -30,6 +30,9 @@ const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(cookieParser())  
 app.use(express.json())
+app.use(appLogin)
+app.use(appRegisterNew)
+
 app.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 // const allowCrossDomain = function(req, res, next) {
@@ -104,8 +107,6 @@ app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
 
-app.use(appLogin)
-app.use(appRegisterNew)
 
 app.use(preview)
 

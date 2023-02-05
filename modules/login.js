@@ -31,11 +31,11 @@ res.header("token",jwter)
 // res.clearCookie('token')
 // res.set("token",jwter)
 res.cookie("token","jwter",{
-      maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false
+      maxAge:  24*60*60 * 1000 ,samSite:"None" ,secure : false , httpOnly:false 
 });
 
 
-res.send({data:req.headers.token})
+res.send({data:req.headers.cookies})
 
 
 

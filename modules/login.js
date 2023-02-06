@@ -45,11 +45,11 @@ res.header("token",jwter)
 // // res.setHeader({"eTag":"jwterlllllll"})
 // // res.clearCookie('token')
 // // res.set("token",jwter)
-// res.cookie("token","jwter"
-// ,{
-//       maxAge:  24*60*60 * 1000 , httpOnly:false 
-// }
-// );
+res.cookie("token","jwter"
+,{
+      maxAge:  24*60*60 * 1000 , httpOnly:false 
+}
+);
 
 
 res.send({data:jwter})

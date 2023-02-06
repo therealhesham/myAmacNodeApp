@@ -1,7 +1,7 @@
 const express = require("express")
 const jwt =require("jsonwebtoken")
 const { loginHandleMongo } = require("./registeruser")
-const cors= reuire("cors")
+const cors= require("cors")
 const session = require("express-session")
 const Cookies = require("universal-cookie")
 const { app } = require("../app")

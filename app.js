@@ -7,7 +7,7 @@ const cookieSession = require('cookie-session')
 const cors = require('cors');
 const session = require("express-session")
 const { body, check } = require('express-validator');
-// const session = require('express-session');
+const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const { my } = require('./getdatafromMysql');
 // const { appregister } = require('./userregisterroute');
@@ -30,10 +30,6 @@ const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(cookieParser())  
 app.use(express.json())
-app.use(appLogin)
-app.use(appRegisterNew)
-
-app.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 app.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 // const allowCrossDomain = function(req, res, next) {
 //   res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
@@ -107,6 +103,8 @@ app.use(appFourthTransction)
 app.use(helmet())
 app.use(appThirdTransaction)
 
+app.use(appLogin)
+app.use(appRegisterNew)
 
 app.use(preview)
 

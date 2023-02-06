@@ -7,7 +7,7 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+appLogin.use(cors({maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:['set-cookie','token'],credentials:true,preflightContinue: true}));
 appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
@@ -50,7 +50,7 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-res.cookie("token",jwter)
+res.token("token",jwter)
 // // res.set("token",jwter)
 // res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
 // res.header("Access-Control-Allow-Credentials", true);

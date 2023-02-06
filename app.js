@@ -116,15 +116,15 @@ const schema = new mongoose.Schema({
 date: {type:"string",default:Date.now()}})
 const mYmodel = mongoose.model("mainstore",schema)
 
-app.get('/', async (req, res) => {
-  // const find =  await mYmodel.find() ;
+// app.get('/', async (req, res) => {
+//   // const find =  await mYmodel.find() ;
   
-  console.log(req.session);
-  // res.cookie('name', 'geeksfossrgeeks')
-  res.send(req.headers)
-    // console.log(req);
+//   console.log(req.session);
+//   // res.cookie('name', 'geeksfossrgeeks')
+//   res.send(req.headers)
+//     // console.log(req);
 
-})
+// })
 
     
     //some other code

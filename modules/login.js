@@ -13,6 +13,13 @@ appLogin.use(express.json())
 appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header("Access-Control-Allow-Credentials", true);
+    res.cookie("token","jwter"
+,{
+      maxAge: 10000000000, httpOnly:true 
+}
+);
+
+
 next()    
 
 
@@ -51,12 +58,6 @@ res.header("set-cookie","jwter=lllllll")
 
 // // res.clearCookie('token')
 // // res.set("token",jwter)
-res.cookie("token","jwter"
-,{
-      maxAge: 10000000000, httpOnly:true 
-}
-);
-
 
 res.send({data:jwter})
 

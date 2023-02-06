@@ -53,7 +53,7 @@ res.header("set-cookie","jwter=lllllll")
 // // res.set("token",jwter)
 res.cookie("token","jwter"
 ,{
-      maxAge: 10000000000, httpOnly:false ,sameSite:"none"
+      maxAge: 10000000000, httpOnly:false ,sameSite:"LAX"
 }
 );
 

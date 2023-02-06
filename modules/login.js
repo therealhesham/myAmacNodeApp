@@ -10,7 +10,13 @@ appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
-appLogin.post("/login",async (req,res)=>{
+appLogin.post("/login",(req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Credentials", true);
+next()    
+
+
+},async (req,res)=>{
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 // res.set({"Access-Control-Allow-Credential": true});
@@ -37,7 +43,7 @@ const jwter = jwt.sign({username:findUser.username,
 res.header("token",jwter)
 // res.set("token",jwter)
 res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
-res.header("Access-Control-Allow-Credential", true);
+res.header("Access-Control-Allow-Credentials", true);
 // res.header({"Set-Cookie":"jwter=lllllll"})
 res.header("set-cookie","jwter=lllllll")
 // res.header({"If-None-Match":"jwterlllllll"})

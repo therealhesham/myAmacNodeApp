@@ -15,7 +15,7 @@ appLogin.post("/login",async (req,res)=>{
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 // res.set({"Access-Control-Allow-Credential": true});
 res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-res.header({"Access-Control-Allow-Credential": true});
+
 
 const email = req.body.email
 const password = req.body.password
@@ -36,7 +36,8 @@ const jwter = jwt.sign({username:findUser.username,
 
 res.header("token",jwter)
 // res.set("token",jwter)
-res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+res.header("Access-Control-Allow-Credential", true);
 // res.header({"Set-Cookie":"jwter=lllllll"})
 // res.header("Set-Cookie","jwter=lllllll")
 // res.header({"If-None-Match":"jwterlllllll"})

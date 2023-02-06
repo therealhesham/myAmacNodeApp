@@ -30,21 +30,21 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 res.header("token",jwter)
-res.set("token",jwter)
-
-res.header({"Set-Cookie":"jwter=lllllll"})
-res.header("Set-Cookie","jwter=lllllll")
-res.header({"If-None-Match":"jwterlllllll"})
-res.set("If-None-Match","jwterlllllll")
-
-// res.setHeader({"eTag":"jwterlllllll"})
-// res.clearCookie('token')
 // res.set("token",jwter)
-res.cookie("token","jwter"
-,{
-      maxAge:  24*60*60 * 1000 , httpOnly:false 
-}
-);
+
+// res.header({"Set-Cookie":"jwter=lllllll"})
+// res.header("Set-Cookie","jwter=lllllll")
+// res.header({"If-None-Match":"jwterlllllll"})
+// res.set("If-None-Match","jwterlllllll")
+
+// // res.setHeader({"eTag":"jwterlllllll"})
+// // res.clearCookie('token')
+// // res.set("token",jwter)
+// res.cookie("token","jwter"
+// ,{
+//       maxAge:  24*60*60 * 1000 , httpOnly:false 
+// }
+// );
 
 
 res.send({data:req.headers})

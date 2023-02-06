@@ -39,7 +39,7 @@ res.header("token",jwter)
 res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
 res.header("Access-Control-Allow-Credential", true);
 // res.header({"Set-Cookie":"jwter=lllllll"})
-// res.header("Set-Cookie","jwter=lllllll")
+res.header("Set-Cookie","jwter=lllllll")
 // res.header({"If-None-Match":"jwterlllllll"})
 // res.set("If-None-Match","jwterlllllll")
 

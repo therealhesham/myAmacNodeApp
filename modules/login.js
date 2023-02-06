@@ -59,7 +59,7 @@ res.header("set-cookie","jwter=lllllll")
 // // res.clearCookie('token')
 // // res.set("token",jwter)
 
-res.send({data:jwter})
+res.send({data:req.headers})
 
 
 

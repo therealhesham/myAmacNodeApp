@@ -12,6 +12,11 @@ appLogin.use(express.json())
 
 appLogin.post("/login",async (req,res)=>{
 // req.session.name ="hesham"
+res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+res.set({"Access-Control-Allow-Credential": true});
+res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+res.header({"Access-Control-Allow-Credential": true});
+
 const email = req.body.email
 const password = req.body.password
 
@@ -47,7 +52,7 @@ res.header("token",jwter)
 // );
 
 
-res.send({data:req.headers})
+res.send({data:jwter})
 
 
 

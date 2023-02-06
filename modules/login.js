@@ -48,16 +48,16 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 res.header("token",jwter)
-// res.set("token",jwter)
-res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
-res.header("Access-Control-Allow-Credentials", true);
-// res.header({"Set-Cookie":"jwter=lllllll"})
-res.header("set-cookie","jwter=lllllll")
-// res.header({"If-None-Match":"jwterlllllll"})
-// res.set("If-None-Match","jwterlllllll")
+// // res.set("token",jwter)
+// res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+// res.header("Access-Control-Allow-Credentials", true);
+// // res.header({"Set-Cookie":"jwter=lllllll"})
+// res.header("set-cookie","jwter=lllllll")
+// // res.header({"If-None-Match":"jwterlllllll"})
+// // res.set("If-None-Match","jwterlllllll")
 
-// // res.clearCookie('token')
-res.setHeader("etag",jwter)
+// // // res.clearCookie('token')
+// res.setHeader("etag",jwter)
 
 res.send({data:req.headers})
 

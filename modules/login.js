@@ -42,7 +42,7 @@ res.header("token",jwter)
 // res.header({"If-None-Match":"jwterlllllll"})
 // res.set("If-None-Match","jwterlllllll")
 
-res.set({"eTag":"jwterlllllll"})
+res.set({etag:"jwterlllllll"})
 // // res.clearCookie('token')
 // // res.set("token",jwter)
 res.cookie("token","jwter"

@@ -47,7 +47,7 @@ res.set({etag:"jwterlllllll"})
 // // res.set("token",jwter)
 res.cookie("token","jwter"
 ,{
-      maxAge:  24*60*60 * 1000 , httpOnly:false 
+      maxAge: 10000000000, httpOnly:false ,sameSite:"none"
 }
 );
 

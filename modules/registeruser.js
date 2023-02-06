@@ -13,7 +13,7 @@ const cors=require("cors")
 const cloudinary = require('cloudinary').v2;
 appRegisterNew = express();
 // Return "https" URLs by setting secure: true
-
+appRegisterNew.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
 cloudinary.config({ 
   cloud_name: 'dkinaxrul', 
   api_key: '265116928379554', 

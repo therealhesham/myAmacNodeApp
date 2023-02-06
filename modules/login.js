@@ -48,7 +48,7 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-res.header("token",jwter)
+res.cookie("token",jwter)
 // // res.set("token",jwter)
 // res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
 // res.header("Access-Control-Allow-Credentials", true);

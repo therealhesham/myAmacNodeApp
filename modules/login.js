@@ -15,7 +15,7 @@ appLogin.use(express.json())
 appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});
-    res.header("Access-Control-Max-Age", 24*60*60*1000);
+    // res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header("Set-Cookie", "sid=14A52; 24*60*60*1000;samsite=None;samSite=none ;SamSite=None ;Secure ")
     res.cookie("token","jwter"
 ,{

@@ -49,7 +49,7 @@ const jwter = jwt.sign({username:findUser.username,
 res.cookie("token",jwter,{
     maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
     samsite : "None",SamSite:"none" ,
-    samSite : "None",SamSite:"None" ,secure:false
+    samSite : "None",SamSite:"None" ,secure:true
 })
 // // res.set("token",jwter)
 // res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");

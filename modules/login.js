@@ -28,7 +28,7 @@ next()
 }, (req,res)=>{
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-res.set({"Access-Control-Allow-Credential": true});
+res.set({"Access-Control-Allow-Credentials": "true"});
 res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 
 

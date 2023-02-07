@@ -53,7 +53,7 @@ const jwter = jwt.sign({username:findUser.username,
             
 
 
-res.cookie("token",jwter,{maxAge: "24*60*60*1000"})
+res.header("token",jwter)
 // // res.set("token",jwter)
 // res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
 // res.header("Access-Control-Allow-Credentials", true);

@@ -51,19 +51,7 @@ if (!findUser) return res.send({data:"dataNotFound"});
 const jwter = jwt.sign({username:findUser.username,
     firstName:findUser.firstName},process.env.MYSECRET)
             
-
-
-res.header("token",jwter)
-// // res.set("token",jwter)
-// res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
-// res.header("Access-Control-Allow-Credentials", true);
-// // res.header({"Set-Cookie":"jwter=lllllll"})
-// res.header("set-cookie","jwter=lllllll")
-// // res.header({"If-None-Match":"jwterlllllll"})
-// // res.set("If-None-Match","jwterlllllll")
-
-// // // res.clearCookie('token')
-// res.setHeader("etag",jwter)
+    res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
 
 res.send(jwter)
 

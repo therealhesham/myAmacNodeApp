@@ -16,7 +16,10 @@ appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Max-Age", 600000);
-    res.header("Set-Cookie", "sid=14A52;HostOnly=false;hostOnly=false;hostOnly=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=None ;secure ")
+    res.header("Set-Cookie", "sid=14A52;HostOnly=false;hostOnly=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=None ;secure ")
+    res.header("Set-Cookie", "sid=14A52;HostOnly=false;hostOnly=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=None ")
+    res.header("Set-Cookie", "sid=14A52;HostOnly=false;hostOnly=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=strict ")
+    res.header("Set-Cookie", "sid=14A52")
 
 
 next()    
@@ -25,7 +28,7 @@ next()
 }, (req,res)=>{
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-// res.set({"Access-Control-Allow-Credential": true});
+res.set({"Access-Control-Allow-Credential": true});
 res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 
 
@@ -47,7 +50,7 @@ const jwter = jwt.sign({username:findUser.username,
 
 
 res.cookie("token",jwter,{
-    maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
+    maxAge: 99999999 , samSite : "None",SamSite:"None" ,
     samsite : "None",SamSite:"none" ,
     samSite : "None",SamSite:"None" ,
 })

@@ -52,6 +52,7 @@ const jwter = jwt.sign({username:findUser.username,
     firstName:findUser.firstName},process.env.MYSECRET)
             
     res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+    res.cookie("hesham","hosom",{samSite:"none"})
 
 res.send(jwter)
 

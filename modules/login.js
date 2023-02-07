@@ -7,7 +7,7 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+appLogin.use(cors({origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true}));
 appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
@@ -16,7 +16,7 @@ appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Max-Age", 600000);
-    res.header("Set-Cookie", "sid=14A52;hostOnly=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=None ;secure ")
+    res.header("Set-Cookie", "sid=14A52;HostOnly=false;hostOnly=false;hostonly=false;host-only=false; max-age=60*24*24*1000;samsite=None;samSite=none ;SamSite=None ;secure ")
 
 
 next()    
@@ -49,7 +49,7 @@ const jwter = jwt.sign({username:findUser.username,
 res.cookie("token",jwter,{
     maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
     samsite : "None",SamSite:"none" ,
-    samSite : "None",SamSite:"None" ,
+    samSite : "None",SamSite:"None" ,secure:false
 })
 // // res.set("token",jwter)
 // res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");

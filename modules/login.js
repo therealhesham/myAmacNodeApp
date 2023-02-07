@@ -16,9 +16,10 @@ appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 600);
+    res.header("Set-Cookie", "sid=14A52; max-age=3600;samsite : None;samSite : none ;SamSite : none ")
     res.cookie("token","jwter"
 ,{
-      maxAge: 10000000000, httpOnly:true  , samSite : "None",SamSite:"None" ,
+      maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
       samsite : "None",SamSite:"none" ,
       samSite : "None",SamSite:"None" ,
 }

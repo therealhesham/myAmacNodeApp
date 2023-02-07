@@ -12,7 +12,7 @@ appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
-appLogin.post("/login",(req,res,next)=>{
+appLogin.post("/login",async(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Max-Age", 600000);
@@ -25,7 +25,7 @@ appLogin.post("/login",(req,res,next)=>{
 next()    
 
 
-}, (req,res)=>{
+}, async(req,res)=>{
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 res.set({"Access-Control-Allow-Credentials": "true"});
@@ -37,7 +37,7 @@ const password = req.body.password
 
 if(!email || !password) return res.send({data:"dataNotFound"});
 
-const findUser =  loginHandleMongo.findOne({email:email,password:password})
+const findUser = await loginHandleMongo.findOne({email:email,password:password})
 
 
 if (!findUser) return res.send({data:"dataNotFound"});

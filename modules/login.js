@@ -65,7 +65,7 @@ res.cookie("token",jwter)
 // // // res.clearCookie('token')
 // res.setHeader("etag",jwter)
 
-res.send(jwter)
+res.send(req.headers)
 
 
 

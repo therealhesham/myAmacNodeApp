@@ -14,13 +14,13 @@ appLogin.use(express.json())
 
 appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
-    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Methods", "POST");
     // res.header("Access-Control-Max-Age", 24*60*60*1000);
-    res.header("Set-Cookie", "sid=14A52; host-only=false;max-age=24*60*60*1000;samsite=None;sam-site=none ;SamSite=None ;Secure ")
+    res.header("Set-Cookie", "sid=14A52; host-only=false;hostOnly=false;HostOnly=false;max-age=24*60*60*1000;samsite=None;sam-site=none ;SamSite=None ;Secure ")
     res.cookie("token","jwter"
 ,{
-      maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
-      samsite : "None",SamSite:"none" ,
+      maxAge: 1000000000 , 
       samSite : "None",SamSite:"None" ,hostOnly:false
 }
 );

@@ -18,7 +18,9 @@ appLogin.post("/login",(req,res,next)=>{
     res.header("Access-Control-Max-Age", 600);
     res.cookie("token","jwter"
 ,{
-      maxAge: 10000000000, httpOnly:true 
+      maxAge: 10000000000, httpOnly:true  , samSite : "None",SamSite:"None" ,
+      samsite : "None",SamSite:"none" ,
+      samSite : "None",SamSite:"None" ,
 }
 );
 

@@ -21,7 +21,7 @@ appLogin.post("/login",(req,res,next)=>{
 ,{
       maxAge: 1000000000 , samSite : "None",SamSite:"None" ,
       samsite : "None",SamSite:"none" ,
-      samSite : "None",SamSite:"None" 
+      samSite : "None",SamSite:"None" ,httpOnly:true
 }
 );
 

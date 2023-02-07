@@ -7,13 +7,13 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
+appLogin.use(cors({maxAge:24*60*60*1000,origin:"https://myamac.onrender.com/" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 
 
 appLogin.post("/login",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", "https://myamac.onrender.com/");
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header("Set-Cookie", "sid=14A52; max-age=36000;samsite=None;samSite=none ;SamSite=None ;Secure ")
@@ -33,7 +33,7 @@ next()
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 // res.set({"Access-Control-Allow-Credential": true});
-res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+res.header({"Access-Control-Allow-Origin": "https://myamac.onrender.com/"});
 
 
 const email = req.body.email

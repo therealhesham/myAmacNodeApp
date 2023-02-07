@@ -7,7 +7,7 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-// appLogin.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+appLogin.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:["set-cookie"],credentials:true}));
 appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 

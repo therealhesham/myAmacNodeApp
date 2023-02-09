@@ -41,12 +41,12 @@ res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app
 const email = req.body.email
 const password = req.body.password
 
-if(!email || !password) return res.send({data:"dataNotFound"});
+if(!email || !password) return res.send("dataNotFound");
 
 const findUser =  loginHandleMongo.findOne({email:email,password:password})
 
 
-if (!findUser) return res.send({data:"dataNotFound"});
+if (!findUser) return res.send("dataNotFound");
 
 
 
@@ -57,7 +57,7 @@ const jwter = jwt.sign({username:findUser.username,
     res.cookie("hesham","hosom",{sameSite:"none" ,secure:true})
     res.cookie("hessham","hosom",{sameSite:"none" ,secure:false})
 
-res.send(jwter)
+res.send("jwter")
 
 
 

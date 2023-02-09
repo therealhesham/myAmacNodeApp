@@ -31,7 +31,7 @@ appLogin.post("/login",(req,res,next)=>{
 next()    
 
 
-}, (req,res)=>{
+}, async (req,res)=>{
 // req.session.name ="hesham"
 // res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
 // res.set({"Access-Control-Allow-Credential": true});
@@ -40,10 +40,10 @@ res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app
 
 const email = req.body.email
 const password = req.body.password
-
+console.log(req.body)
 if(!email || !password) return res.json("dataNotFound");
 
-const findUser =  loginHandleMongo.findOne({email:email,password:password})
+const findUser =  await loginHandleMongo.findOne({email:email,password:password})
 
 
 if (!findUser) return res.json("dataNotFound");

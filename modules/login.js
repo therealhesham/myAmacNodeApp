@@ -41,12 +41,12 @@ res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app
 const email = req.body.email
 const password = req.body.password
 
-if(!email || !password) return res.send("dataNotFound");
+if(!email || !password) return res.json("dataNotFound");
 
 const findUser =  loginHandleMongo.findOne({email:email,password:password})
 
 
-if (!findUser) return res.send("dataNotFound");
+if (!findUser) return res.json("dataNotFound");
 
 
 

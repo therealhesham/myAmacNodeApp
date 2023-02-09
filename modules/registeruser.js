@@ -203,7 +203,7 @@ console.log(req.body)
             
             const saver = await newData.save()
             
-            res.cookie("token",jwter)
+            res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
             res.send(jwter)        
     
     }

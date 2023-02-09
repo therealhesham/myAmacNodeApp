@@ -50,7 +50,7 @@ if (!findUser) return res.json("dataNotFound");
 
 
 
-const jwter = jwt.sign({username:findUser.username,
+const jwter = jwt.sign({id:findUser._id,username:findUser.username,
     firstName:findUser.firstName},process.env.MYSECRET)
             
     res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")

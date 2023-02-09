@@ -57,7 +57,7 @@ const jwter = jwt.sign({username:findUser.username,
     res.cookie("hesham","hosom",{sameSite:"none" ,secure:true})
     res.cookie("hessham","hosom",{sameSite:"none" ,secure:false})
 
-res.send("jwter")
+res.json(jwter)
 
 
 

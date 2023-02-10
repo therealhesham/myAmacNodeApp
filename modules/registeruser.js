@@ -198,8 +198,8 @@ console.log(req.body)
             password:req.body.password,
             repeatpassword:req.body.password,
             nationalID:req.body.nationalID
-  //           ,
-  //  url:req.body.url         
+            ,
+   url:req.body.url         
             
             
             })

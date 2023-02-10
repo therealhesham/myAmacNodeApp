@@ -185,7 +185,7 @@ module.exports.app=app
 module.exports.appEx=express
 
 
-app.listen(process.env.PORT || 3000,()=> console.log("hi"))
+app.listen(process.env.PORT || 3000,()=> console.log("hi from listening"))
 // const PORT = 3000;
 
 // http.listen(process.env.PORT || 3000, () => {

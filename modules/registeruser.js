@@ -113,6 +113,7 @@ const idnumber = mongoose.model("idnumber",new mongoose.Schema({idnumber:"string
 
 appRegisterNew.get("/userlists",async (req,res)=>{
   try {
+    
       // loginHandleMongo.find()
   // console.log(loginHandleMongo)
   const finder = await models.find({});

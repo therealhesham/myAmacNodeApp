@@ -105,6 +105,12 @@ repeatpassword:"string",
 url:"string"
 }))
 
+
+const idnumber = mongoose.model("idnumber",new mongoose.Schema({idnumber:"string"}))
+
+
+
+
 appRegisterNew.get("/userlists",async (req,res)=>{
   try {
       // loginHandleMongo.find()
@@ -178,7 +184,10 @@ appRegisterNew.post("/register",async(req,res)=>{
     // console.log(req.body)
 const {error} = Joier.validate(req.body)
 if (error) return res.send({error:error.details})
-// if (error) return res.send(error)
+const searchID = await idnumber.findOne({idnumber:req.body.nationalID})
+if(!searchID) return res.send({error:[{message:"nationalID",path:["خطأ في الرقم القومي او قد تكون غير موظف في قطاع شمال"]}]});
+
+
 console.log(req.body)
         const newData = new models({
           username:req.body.username,

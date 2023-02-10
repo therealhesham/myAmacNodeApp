@@ -107,7 +107,7 @@ if(req.method =="GET"){
   }
   }
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

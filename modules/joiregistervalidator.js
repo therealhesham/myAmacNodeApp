@@ -10,8 +10,8 @@ const schema = Joi.object({
         
         .min(3)
         .max(30)
-    //   ,
-        // url: Joi.string().optional()
+      ,
+        url: Joi.string().optional
         , firstName: Joi.string()
         
         .min(3)

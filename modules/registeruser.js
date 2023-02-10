@@ -232,7 +232,7 @@ appRegisterNew.get("/info/:id",async(req,res)=>{
 
   id=req.params.id
   const finder = await models.findOne({id:id})
-  res.send(JSON.parse(finder))
+  res.send(finder)
 })
 
 

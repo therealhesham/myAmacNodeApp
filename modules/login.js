@@ -71,7 +71,7 @@ res.json(jwter)
 appLogin.get("/logout",async(req,res)=>{
 
     res.header("Set-Cookie", "token=clearing; max-age=3;samesite=None;sameSite=none ;SameSite=None ;Secure ")
-console.log("token deleted")
+res.send("token deleted")
 
 })
 module.exports.appLogin=appLogin

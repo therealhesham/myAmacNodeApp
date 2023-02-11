@@ -23,16 +23,16 @@ quantity:{type:"number",required:true}})
   appPreview.get("/preview",async(req,res)=>{
     try {
     
-      var pairs = req.headers.cookie.split(';')
-    
-      var cookies = {};
-      for (var i = 0; i < pairs.length; i++) {
-         var nameValue = pairs[i].split('=');
-         cookies[nameValue[0].trim()] = nameValue[1];
-      }
+    //   var pairs = req.headers.cookie.split(';')
+    // console.log(req.cookies)
+    //   var cookies = {};
+    //   for (var i = 0; i < pairs.length; i++) {
+    //      var nameValue = pairs[i].split('=');
+    //      cookies[nameValue[0].trim()] = nameValue[1];
+    //   }
       
       
-      const sender = cookies.token
+      const sender = req.cookies.token
       const decoder = jwt.verify(sender,process.env.MYSECRET)
     
       const finder = await mYmodel.find({});

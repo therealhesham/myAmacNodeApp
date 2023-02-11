@@ -1,4 +1,5 @@
 const express = require("express")
+const jwt = require("jsonwebtoken")
 require('dotenv').config({ debug: true })
 appPreview= express()
 
@@ -33,6 +34,7 @@ quantity:{type:"number",required:true}})
       
       
       const sender = req.cookies.token
+      console.log(req.cookies.token)
       const decoder = jwt.verify(sender,process.env.MYSECRET)
     
       const finder = await mYmodel.find({});

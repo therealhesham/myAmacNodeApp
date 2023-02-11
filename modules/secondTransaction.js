@@ -113,18 +113,11 @@ appSecondTransaction.get("/specificdatas/:store",async(req,res)=>{
 })
 appSecondTransaction.get("/getsecondtransactions",async(req,res)=>{
     try {
-    
-        var pairs = req.headers.cookie.split(';')
-      
-        var cookies = {};
-        for (var i = 0; i < pairs.length; i++) {
-           var nameValue = pairs[i].split('=');
-           cookies[nameValue[0].trim()] = nameValue[1];
-        }
+        const sender = req.cookies.token
         
-        
-        const sender = cookies.token
         const decoder = jwt.verify(sender,process.env.MYSECRET)
+    
+        
       
         const finder = await secondModel.find();
         res.send(finder)

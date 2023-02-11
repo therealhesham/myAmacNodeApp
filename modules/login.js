@@ -68,4 +68,10 @@ res.json(jwter)
 
 
 })
+appLogin.get("/logout",async(req,res)=>{
+
+    res.clearCookie("token")
+console.log("token deleted")
+
+})
 module.exports.appLogin=appLogin

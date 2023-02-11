@@ -160,6 +160,7 @@ app.post("/datapost",async(req,res)=>
 {
 console.log(req.cookies);
 
+
 const data = new mYmodel({store :req.body.store,
   items:req.body.items,
 })

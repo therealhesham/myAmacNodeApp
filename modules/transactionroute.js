@@ -51,14 +51,14 @@ appTransactionRoute.get("/firsttansactionlist",async(req,res)=>{
         const sender = req.cookies.token
         
         const decoder = jwt.verify(sender,process.env.MYSECRET)
-if(decoder) return res.send(decoder);
+
         const finder = await modelexport.find()
-        res.send("not authenticated")
+        res.send(finder)
         
      
       
       } catch (Error) {
-    console.log(Error)
+    res.send("not authenticated")
       }
       
 

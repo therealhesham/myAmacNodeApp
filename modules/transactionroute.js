@@ -53,7 +53,7 @@ appTransactionRoute.get("/firsttansactionlist",async(req,res)=>{
         const decoder = jwt.verify(sender,process.env.MYSECRET)
 if(decoder) return res.send(decoder);
         const finder = await modelexport.find()
-        res.send(finder)
+        res.send("not authenticated")
         
      
       

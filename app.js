@@ -100,14 +100,10 @@ if(req.method =="GET"){
   }
   
   
-  }else if(req.method =="POST")
-  {
-    console.log("success")
-    next()
   }
   }
   
-// app.use(MiddleWareFunctionForLogin)
+app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

@@ -105,17 +105,36 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
 
   
 appSecondTransaction.get("/specificdatas/:store",async(req,res)=>{
-    console.log(req.params.store)
+    
  store=req.params.store;
     const finder = await previewStoreSchema.find({store:store})
     res.send(finder)
 
 })
 appSecondTransaction.get("/getsecondtransactions",async(req,res)=>{
-
-    const finder = await secondModel.find();
-    res.send(finder)
-
+    try {
+    
+        var pairs = req.headers.cookie.split(';')
+      
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+           var nameValue = pairs[i].split('=');
+           cookies[nameValue[0].trim()] = nameValue[1];
+        }
+        
+        
+        const sender = cookies.token
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
+      
+        const finder = await secondModel.find();
+        res.send(finder)
+    
+     
+      
+      } catch (error) {
+        res.send("not authenticated")
+      }
+  
 })
 appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     

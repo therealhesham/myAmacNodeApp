@@ -77,7 +77,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 
 function MiddleWareFunctionForLogin(req,res,next){
-if(req.method =="GET"){
+if(req.method ==="GET"){
 
   try {
     
@@ -100,10 +100,14 @@ if(req.method =="GET"){
   }
   
   
+  }else{
+next()
+
+
   }
   }
   
-app.use(MiddleWareFunctionForLogin)
+// app.use(MiddleWareFunctionForLogin)
 app.use(userList)
 var http = require('http').createServer(app)
 

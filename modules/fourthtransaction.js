@@ -22,60 +22,97 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
     // const [items,setItems] = useState("")
     // const [quantity,setQuantity]=useState("")
     // const [type,setType]=useState("")
-
-    const saver = new refunder({
-        transactionType:"مرتجع",
-        contractor:req.body.contractor,
-        destination:req.body.destination,
-        items:req.body.items,
-        quantity:req.body.quantity,
-        type:req.body.type
-        
-        
-            })
-
-
-
-const findByI = await previewStoreSchema.findOne({store:saver.destination,
-                items:saver.items
-                })
-                // ||  findByI.items < 1 || (findByI.quantity - saver.quantity) < 0
-if(  !findByI  ) return res.send(false)                ;
-const saveNewData = await  saver.save();
-
-// const findByID = await previewStoreSchema.findOne({store:saveNewData.destination,
-//     items:saveNewData.items
-//     })
+    try {
     
-switch (saver.transactionType) {
-    case "مرتجع":
+        var pairs = req.headers.cookie.split(';')
+      
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+           var nameValue = pairs[i].split('=');
+           cookies[nameValue[0].trim()] = nameValue[1];
+        }
         
-        // if (!findByID) return res.send(false)
-        const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByI._id,{"$inc":{quantity:+ saveNewData.quantity}})
-        res.send (true)
-
         
-        break;
-
-    default:
-        break;
-}
-
-
-
-
-
+        const sender = cookies.token
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
+        const saver = new refunder({
+            transactionType:"مرتجع",
+            contractor:req.body.contractor,
+            destination:req.body.destination,
+            items:req.body.items,
+            quantity:req.body.quantity,
+            type:req.body.type
+            
+            
+                })
+    
+    
+    
+    const findByI = await previewStoreSchema.findOne({store:saver.destination,
+                    items:saver.items
+                    })
+                    // ||  findByI.items < 1 || (findByI.quantity - saver.quantity) < 0
+    if(  !findByI  ) return res.send(false)                ;
+    const saveNewData = await  saver.save();
+    
+    // const findByID = await previewStoreSchema.findOne({store:saveNewData.destination,
+    //     items:saveNewData.items
+    //     })
+        
+    switch (saver.transactionType) {
+        case "مرتجع":
+            
+            // if (!findByID) return res.send(false)
+            const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByI._id,{"$inc":{quantity:+ saveNewData.quantity}})
+            res.send (true)
+    
+            
+            break;
+    
+        default:
+            break;
+    }
+    
+    
+    
+    
+     
+      
+      } catch (error) {
+        res.send("not authenticated")
+      }
+      
+    
 })
 
 
 
 
 appFourthTransction.get("/refunds",async(req,res)=>{
+    try {
+    
+        var pairs = req.headers.cookie.split(';')
+      
+        var cookies = {};
+        for (var i = 0; i < pairs.length; i++) {
+           var nameValue = pairs[i].split('=');
+           cookies[nameValue[0].trim()] = nameValue[1];
+        }
+        
+        
+        const sender = cookies.token
+        const decoder = jwt.verify(sender,process.env.MYSECRET)
 
-    const finder = await refunder.find()
-    res.send(finder)
-
-
+      
+        const finder = await refunder.find()
+        res.send(finder)
+    
+       
+      
+      } catch (error) {
+        res.send("not authenticated")
+      }
+  
 
 })
 

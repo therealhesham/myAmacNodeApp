@@ -101,7 +101,7 @@ email:"string",
 isAdmin:{type:"Boolean",default:false},
 password:"String",
 repeatpassword:"string",
-// nationalID:{type:"string",length:14,required:true},
+nationalID:{type:"string",length:14,required:true},
 url:"string"
 }))
 

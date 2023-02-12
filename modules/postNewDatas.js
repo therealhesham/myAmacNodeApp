@@ -35,7 +35,7 @@ const data= new previewStoreSchema({data:req.body.date,
 
 
     const dataSaved = await data.save()
-    res.send(dataSaved)
+    res.send("success")
 } catch (error) {
     res.send(error)
 }

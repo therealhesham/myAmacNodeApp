@@ -25,7 +25,7 @@ quantity:{type:"number",required:true}})
     
     const sender = req.cookies.token
   // console.log(sender)
-  if(!sender) return res.send(req.cookies);
+  if(!sender) return res.send(req.headers);
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
 if(!decoder) return res.send("not authenticated");

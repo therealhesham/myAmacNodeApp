@@ -252,13 +252,13 @@ if(!searchID) return res.send({error:[{message:"nationalID",path:["خطأ في �
             
             })
             
-            
-            const jwter = jwt.sign({username:newData.username,
-              id:newData._id,
-              firstName:newData.firstName,url:newData.url,
-              isAdmin:newData.isAdmin},process.env.MYSECRET)
-            
             const saver = await newData.save()
+            const jwter = jwt.sign({username:req.body.username,
+              id:saver._id,
+              firstName:saver.firstName,url:saver.url,
+              isAdmin:saver.isAdmin},process.env.MYSECRET)
+            
+            
             
             res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
             res.send(jwter)        

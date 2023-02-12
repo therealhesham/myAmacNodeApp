@@ -23,7 +23,7 @@ quantity:{type:"number",required:true}})
 
   appPreview.get("/preview",async(req,res)=>{
     
-    
+    try {
     //   var pairs = req.headers.cookie.split(';')
     // console.log(req.cookies)
     //   var cookies = {};
@@ -33,20 +33,27 @@ quantity:{type:"number",required:true}})
     //   }
       
       
-      const sender = req.cookies.token
-      if(!sender) return res.send("not authenticated")
-      const decoder = jwt.verify(sender,process.env.MYSECRET)
-    if(!decoder) return res.send("not authenticated")
+    const sender = req.cookies.token
+    // console.log(sender)
+    if(!sender) return res.send("not authenticated")
+    const decoder =  jwt.verify(sender,process.env.MYSECRET)
+    // console.log(decoder)
+  // if(!decoder) return res.send("not authenticated")
+  
+  
+    const finder = await mYmodel.find({});
+
+
+    res.send(finder)
+      
+ 
+  
+
+
+    } catch (error) {
+      
+    }
     
-      const finder = await mYmodel.find({});
-
-
-      res.send(finder)
-        
-   
-    
-
-
   })
 
 

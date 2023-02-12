@@ -60,7 +60,7 @@ const getAssetInfo = async (publicId) => {
         console.log(result);
         return result.colors;
         } catch (error) {
-        console.error(error);
+        console.log(error);
     }
 };
 //////////////////////////////////////////////////////////////
@@ -133,9 +133,9 @@ appRegisterNew.post("/file",async(req,res)=>{
   
   try {
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.set({"Access-Control-Allow-Credential": true});
+    res.set({"Access-Control-Allow-Credentials": true});
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.header({"Access-Control-Allow-Credential": true});
+    res.header({"Access-Control-Allow-Credentials": true});
     const form = formidable({ multiples: true });
 
     
@@ -171,10 +171,10 @@ appRegisterNew.post("/register",async(req,res)=>{
 
   try{
     res.set({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.set({"Access-Control-Allow-Credential": true});
+    res.set({"Access-Control-Allow-Credentials": true});
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-    res.header({"Access-Control-Allow-Credential": true});
-    console.log("register")
+    res.header({"Access-Control-Allow-Credentials": true});
+    
   const findUserName = await models.findOne({username:req.body.username})
   const findEmail = await models.findOne({email:req.body.email})
 
@@ -189,7 +189,7 @@ const searchID = await idnumber.findOne({idnumber:req.body.nationalID})
 if(!searchID) return res.send({error:[{message:"nationalID",path:["خطأ في الرقم القومي او قد تكون غير موظف في قطاع شمال"]}]});
 
 
-console.log(req.body)
+
         const newData = new models({
           username:req.body.username,
             firstName:req.body.firstName,

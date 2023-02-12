@@ -43,7 +43,7 @@ const password = req.body.password
 console.log(req.body)
 if(!email || !password) return res.json("dataNotFound");
 
-const findUser =  await loginHandleMongo.findOne({email:email,password:password})
+const findUser =  await loginHandleMongo.findOne({email:req.body.email,password:req.body.password})
 
 
 if (!findUser) return res.json("dataNotFound");

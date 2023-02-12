@@ -1,9 +1,11 @@
 const express = require("express")
+const cookieParser=require("cookie-parser")
 const jwt = require("jsonwebtoken")
 require('dotenv').config({ debug: true })
 appPreview= express()
-
+appPreview.use(cookieParser())
 const { default: mongoose } = require("mongoose");
+const { app } = require("../app")
 const NAMEVar= process.env.MONGOUSERNAME
 const COLLECTIONNAME = process.env.COLLECTIONNAME
 mongoose.connect("mongodb+srv://"+ process.env.MONGOUSERNAME +":"+process.env.MONGOPASSWORD +"@cluster0.hkh2k.mongodb.net/"+ COLLECTIONNAME+"?retryWrites=true&w=majority",()=>console.log("mongoose connected"));
@@ -22,10 +24,15 @@ quantity:{type:"number",required:true}})
 
 
   appPreview.get("/preview",(req,res,next)=>{
-    
+    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
     const sender = req.cookies.token
   // console.log(sender)
-  if(!sender) return res.send(req.headers);
+  if(!sender) return res.send(req.cookies);
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
 if(!decoder) return res.send("not authenticated");

@@ -76,36 +76,36 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 
 
-function MiddleWareFunctionForLogin(req,res,next){
-if(req.method ==="GET"){
+// function MiddleWareFunctionForLogin(req,res,next){
+// if(req.method ==="GET"){
 
-  try {
+//   try {
     
-    var pairs = req.headers.cookie.split(';')
+//     var pairs = req.headers.cookie.split(';')
   
-    var cookies = {};
-    for (var i = 0; i < pairs.length; i++) {
-       var nameValue = pairs[i].split('=');
-       cookies[nameValue[0].trim()] = nameValue[1];
-    }
+//     var cookies = {};
+//     for (var i = 0; i < pairs.length; i++) {
+//        var nameValue = pairs[i].split('=');
+//        cookies[nameValue[0].trim()] = nameValue[1];
+//     }
     
     
-    const sender = cookies.token
-    const decoder = jwt.verify(sender,process.env.MYSECRET)
-    if(decoder) next()
+//     const sender = cookies.token
+//     const decoder = jwt.verify(sender,process.env.MYSECRET)
+//     if(decoder) next()
  
   
-  } catch (error) {
-    res.send("not authenticated")
-  }
+//   } catch (error) {
+//     res.send("not authenticated")
+//   }
   
   
-  }else{
-next()
+//   }else{
+// next()
 
 
-  }
-  }
+//   }
+//   }
   
 // app.use(MiddleWareFunctionForLogin)
 app.use(userList)

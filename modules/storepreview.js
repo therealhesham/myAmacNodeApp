@@ -21,9 +21,11 @@ quantity:{type:"number",required:true}})
 
 
 
-  appPreview.get("/preview",(req,res,next)=>{const sender = req.cookies.token
+  appPreview.get("/preview",(req,res,next)=>{
+    
+    const sender = req.cookies.token
   // console.log(sender)
-  if(!sender) return res.send("not authenticated");
+  if(!sender) return res.send(req.cookies);
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
 if(!decoder) return res.send("not authenticated");

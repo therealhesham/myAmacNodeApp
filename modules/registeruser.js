@@ -294,7 +294,7 @@ next()}
 
 
   id=req.params.id
-  const finder = await models.findById(req.params.id)
+  const finder = await models.findById(id)
   res.send(finder)
 })
 

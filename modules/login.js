@@ -85,4 +85,16 @@ next()
 res.send("token deleted")
 
 })
+
+
+appLogin.get("/checker",async(req,res)=>{
+
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+
+
+})
+
+
 module.exports.appLogin=appLogin

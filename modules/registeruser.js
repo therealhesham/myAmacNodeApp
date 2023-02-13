@@ -261,7 +261,7 @@ if(!searchID) return res.send({error:[{message:"nationalID",path:["خطأ في �
             
             
             
-            res.header("Set-Cookie", "token="+jwter+"; max-age=3600;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+            res.header("Set-Cookie", "token="+jwter+"; max-age=24*60*60*1000;samesite=None;sameSite=none ;SameSite=None ;Secure ")
             res.send(jwter)        
     
     }

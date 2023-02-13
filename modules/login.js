@@ -81,8 +81,8 @@ next()
 
 },async(req,res)=>{
     res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
-
-    res.clearCookie("token")
+    res.header("Set-Cookie", "token=h; max-age=1;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+    // res.clearCookie("token")
 res.send("token deleted")
 
 })

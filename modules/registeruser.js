@@ -292,10 +292,14 @@ next()}
 
 ,async(req,res)=>{
 
-
+try {
   id=req.params.id
-  const finder = await models.findById(id)
+  const finder = await models.findById(req.params.id)
   res.send(finder)
+} catch (error) {
+  console.log(error)
+}
+  
 })
 
 

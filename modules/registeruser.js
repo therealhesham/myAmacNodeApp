@@ -200,7 +200,7 @@ appRegisterNew.post("/register",(req,res,next)=>{
   res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
 res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-res.header("Set-Cookie", "token="+jwter+"; max-age=7*24*60*60*1000;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+
   res.cookie("token","jwter"
 ,{
     maxAge: 1000000000 , sameSite : "None",SameSite:"None" ,

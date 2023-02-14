@@ -112,9 +112,9 @@ next()},async (req,res)=>{
     
     
 try{
-    // const sender = req.cookies.token
+    const sender = req.cookies.token
     // if(!sender) return res.send("deleted token")
-    // const decoder = jwt.verify(sender,process.env.MYSECRET)
+    const decoder = jwt.verify(sender,process.env.MYSECRET)
         
 
         

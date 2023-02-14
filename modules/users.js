@@ -42,23 +42,16 @@ res.send(ok)
 })
 appGettUser.post("/send",async (req,res)=>{
     try {
-        var pairs = req.headers.cookie.split(';')
-
-        var cookies = {};
-        for (var i = 0; i < pairs.length; i++) {
-           var nameValue = pairs[i].split('=');
-           cookies[nameValue[0].trim()] = nameValue[1];
-        }
         
         
-        const sender = cookies.token
+        const sender = req.cookies.token
         
         const decoder = jwt.verify(sender,process.env.MYSECRET)
         
         const data = new notifiy({
             sender:decoder.firstName,
             firstName:req.body.firstName,
-            message:req.body.message,socketID:req.body.id
+            message:req.body.message
         ,
         title:req.body.title
     })
@@ -74,18 +67,25 @@ appGettUser.post("/send",async (req,res)=>{
        
 })
 
-appGettUser.get("/requests",async (req,res)=>{
-    var pairs = req.headers.cookie.split(';')
+appGettUser.get("/requests",(req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
-        var cookies = {};
-        for (var i = 0; i < pairs.length; i++) {
-           var nameValue = pairs[i].split('=');
-           cookies[nameValue[0].trim()] = nameValue[1];
-        }
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+next()}
+,async (req,res)=>{
+    
         
-        
-        const sender = cookies.token
-        
+        const sender = req.cookies.token
+    if(!sender)     return res.send("not Authenticated")
         const decoder = jwt.verify(sender,process.env.MYSECRET)
 
 const notifications = await notifiy.find({firstName:decoder.firstName});
@@ -94,25 +94,31 @@ res.send(notifications)
 
 
 })
-appGettUser.get("/falserequests",async (req,res)=>{
+appGettUser.get("/falserequests",(req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("deleted token");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("deleted token");
+next()},async (req,res)=>{
     
     
     
 try{
-    var pairs = req.headers.cookie.split(';')
+    // const sender = req.cookies.token
+    // if(!sender) return res.send("deleted token")
+    // const decoder = jwt.verify(sender,process.env.MYSECRET)
+        
 
-        var cookies = {};
-        for (var i = 0; i < pairs.length; i++) {
-           var nameValue = pairs[i].split('=');
-           cookies[nameValue[0].trim()] = nameValue[1];
-        }
         
-        
-        const sender = cookies.token
-        
-        const decoder = jwt.verify(sender,process.env.MYSECRET)
-        console.log(decoder)
-const notifications = await notifiy.find({firstName:decoder.firstName});
+const notifications = await notifiy.find({firstName:decoder.firstName,isOk:false});
 
     
     res.send(notifications)

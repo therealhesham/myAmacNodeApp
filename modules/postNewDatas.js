@@ -23,12 +23,12 @@ next()}
 
     try {
         console.log(req.body.id)
-        const updater = await previewStoreSchema.findByIdAndUpdate(req.body.id,{store:req.body.store,
-            items:req.body.items,
-            type:req.body.type,
-            quantity:req.body.quantity})
+    //     const updater = await previewStoreSchema.findByIdAndUpdate(req.body.id,{store:req.body.store,
+    //         items:req.body.items,
+    //         type:req.body.type,
+    //         quantity:req.body.quantity})
 
-    res.send("success")
+    // res.send("success")
 } catch (error) {
     res.send(error)
 }

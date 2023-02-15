@@ -69,10 +69,10 @@ switch (saver.transaction) {
         if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
          {await thirdModel.findByIdAndDelete(saver._id) 
         
-            return  res.send(false)}
+            return  res.send("false")}
         if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
         
-        return  res.send(false)
+        return  res.send("false")
         }
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
@@ -80,7 +80,7 @@ switch (saver.transaction) {
         
         break;
         case "وارد":
-            if (!findByID) return res.send(false)
+            if (!findByID) return res.send("false")
             // const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
             res.send (true)
             break;

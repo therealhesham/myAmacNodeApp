@@ -25,16 +25,16 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
     // const [type,setType]=useState("")
     try {
     
-        var pairs = req.headers.cookie.split(';')
+        // var pairs = req.headers.cookie.split(';')
       
-        var cookies = {};
-        for (var i = 0; i < pairs.length; i++) {
-           var nameValue = pairs[i].split('=');
-           cookies[nameValue[0].trim()] = nameValue[1];
-        }
+        // var cookies = {};
+        // for (var i = 0; i < pairs.length; i++) {
+        //    var nameValue = pairs[i].split('=');
+        //    cookies[nameValue[0].trim()] = nameValue[1];
+        // }
         
         
-        const sender = cookies.token
+        const sender = req.cookies.token
         const decoder = jwt.verify(sender,process.env.MYSECRET)
         const saver = new refunder({
             transactionType:"مرتجع",
@@ -53,7 +53,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
                     items:saver.items
                     })
                     // ||  findByI.items < 1 || (findByI.quantity - saver.quantity) < 0
-    if(  !findByI  ) return res.send(false)                ;
+    if(  !findByI  ) return res.send("false")                ;
     const saveNewData = await  saver.save();
     
     // const findByID = await previewStoreSchema.findOne({store:saveNewData.destination,
@@ -80,7 +80,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
      
       
       } catch (error) {
-        res.send("not authenticated")
+        res.send("false")
       }
       
     

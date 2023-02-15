@@ -57,12 +57,12 @@ switch (saver.transaction) {
     case "منصرف":
         if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
             const deleterr = await secondModel.findByIdAndDelete(saver._id) 
-            return res.send(false)}
+            return res.send("false")}
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         res.send (true)
         break;
         case "وارد":
-            if (!findByID) return res.send(false)
+            if (!findByID) return res.send("false")
             const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
             res.send (true)
             break;
@@ -83,12 +83,12 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
         case "منصرف":
             if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
                 const deleterr = await secondModel.findByIdAndDelete(saver._id) 
-                return res.send(false)}
+                return res.send("false")}
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
             res.send (true)
             break;
             case "وارد":
-                if (!findByID) return res.send(false)
+                if (!findByID) return res.send("false")
                 const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
                 res.send (true)
                 break;
@@ -113,10 +113,10 @@ appSecondTransaction.get("/specificdatas/:store",(req,res,next)=>{
 
     const sender = req.cookies.token
   // console.log(sender)
-  if(!sender) return res.send("not authenticated");
+  if(!sender) return res.send("false");
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
-if(!decoder) return res.send("not authenticated");
+if(!decoder) return res.send("false");
 next()}
 
 ,async(req,res)=>{

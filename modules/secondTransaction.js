@@ -10,6 +10,7 @@ const secondModel = mongoosetransaction.model("secondtransaction",new mongoosetr
     {
         
 transaction:"string",
+receiptno:"string",
 store:{type:"string",required:true},
 typeOfImporter:{type:"string",required:true},
 contractor:{type:"string"},
@@ -29,6 +30,7 @@ appSecondTransaction.post("/secondtransaction",async(req,res)=>{
 const savesecondmodel = new secondModel({
     transaction:"منصرف",
 store:req.body.store,
+receiptno:req.body.receiptno,
 typeOfImporter:req.body.typeOfImporter,
 contractor:req.body.contractor,
 typeOfContracting:req.body.typeOfContracting,

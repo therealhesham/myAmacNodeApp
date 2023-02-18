@@ -7,6 +7,7 @@ const { mongoosetransaction, previewStoreSchema } = require("./storepreview");
 appFourthTransction = express();
 const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Schema({
     transactionType:"string",
+    receiptno:"string",
     contractor:{type:"string",required:true},
     destination:{type:"string",required:true},
     items:{type:"string",required:true},
@@ -41,6 +42,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
             contractor:req.body.contractor,
             destination:req.body.destination,
             items:req.body.items,
+            receiptno:req.body.receiptno,
             quantity:req.body.quantity,
             type:req.body.type
             
@@ -53,7 +55,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
                     items:saver.items
                     })
                     // ||  findByI.items < 1 || (findByI.quantity - saver.quantity) < 0
-    if(  !findByI  ) return res.send("false")                ;
+    if(  !findByI  ) return res.send("error")                ;
     const saveNewData = await  saver.save();
     
     // const findByID = await previewStoreSchema.findOne({store:saveNewData.destination,
@@ -65,7 +67,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
             
             // if (!findByID) return res.send(false)
             const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByI._id,{"$inc":{quantity:+ saveNewData.quantity}})
-            res.send (true)
+            res.send ("not false")
     
             
             break;

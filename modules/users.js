@@ -61,7 +61,7 @@ appGettUser.post("/send",async (req,res)=>{
 
                 res.send(saver)
     } catch (error) {
-        console.log(error)
+        res.send(false)
     }
      
        

@@ -14,7 +14,7 @@ from:"string",
 to:{type:"string",required:true},
 
 transaction:{type:"string"},
-
+receiptno:"string",
 quantity:{type:"number",required:true},
 items:{type:"string",required:true},
 unit:{type:"string"},
@@ -45,7 +45,7 @@ const savesecondmodel = new thirdModel({
     transaction:"تحويل",
 from:req.body.from,
 to:req.body.to,
-
+receiptno:req.body.receiptno,
 
 quantity:req.body.quantity,
 items:req.body.items,
@@ -69,20 +69,20 @@ switch (saver.transaction) {
         if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
          {await thirdModel.findByIdAndDelete(saver._id) 
         
-            return  res.send("false")}
+            return  res.send("error")}
         if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
         
-        return  res.send("false")
+        return  res.send("error")
         }
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
-        res.send(true)
+        res.send("not error")
         
         break;
         case "وارد":
-            if (!findByID) return res.send("false")
+            if (!findByID) return res.send("error")
             // const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
-            res.send (true)
+            res.send ("not error")
             break;
     
     default:

@@ -9,6 +9,7 @@ const modelexport = mongoosetransaction.model("firstTransaction",new mongoosetra
     {
         
 transactionType:"string",
+receiptno:"string",
 source:{type:"string",required:true},
 destination:{type:"string",required:true},
 quantity:{type:"number",required:true},
@@ -107,6 +108,7 @@ try {
     console.log(req.body)
     const data =  new modelexport({
         transactionType:"وارد",
+        receiptno:req.body.receiptno,
         source:req.body.source,
         destination:req.body.destination,
     quantity:req.body.quantity,
@@ -125,14 +127,14 @@ try {
     // previewStoreSchema.findOneAndUpdate
     switch (saver.transactionType) {
         case "منصرف":
-            if (!findByID) return res.send("false")
+            if (!findByID) return res.send("error")
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-            res.send (true)
+            res.send ("not error")
             break;
         case "وارد":
-            if (!findByID) return res.send("false")
+            if (!findByID) return res.send("error")
             const updatedInc = await previewStoreSchema.updateOne({_id:findByID._id},{"$inc":{quantity:+ saver.quantity}})
-            res.send (true)
+            res.send ("not error")
             break;
         
         default:
@@ -141,7 +143,7 @@ try {
     }
         
 } catch (error) {
- res.send("false");
+ res.send("error");
 }
 
 

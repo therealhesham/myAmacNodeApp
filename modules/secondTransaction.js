@@ -59,12 +59,12 @@ switch (saver.transaction) {
             const deleterr = await secondModel.findByIdAndDelete(saver._id) 
             return res.send("error")}
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-        res.send (true)
+        res.send ("not true")
         break;
         case "وارد":
             if (!findByID) return res.send("error")
             const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
-            res.send (true)
+            res.send ("not true")
             break;
     
     default:
@@ -85,12 +85,12 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
                 const deleterr = await secondModel.findByIdAndDelete(saver._id) 
                 return res.send("error")}
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-            res.send (true)
+            res.send ("not true")
             break;
             case "وارد":
                 if (!findByID) return res.send("error")
                 const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
-                res.send (true)
+                res.send ("not true")
                 break;
         
         default:

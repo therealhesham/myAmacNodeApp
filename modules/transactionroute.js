@@ -121,7 +121,7 @@ try {
     const saver = await data.save()
     
     const findByID = await previewStoreSchema.findOne({store:data.destination,
-        items:data.items
+        items:data.items,type:data.unit
     })
     
     // previewStoreSchema.findOneAndUpdate

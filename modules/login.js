@@ -54,7 +54,7 @@ const jwter = jwt.sign({username:findUser.username,
     isAdmin:findUser.isAdmin},process.env.MYSECRET)
   
 
-    res.header("Set-Cookie", "token="+jwter+"; max-age=7*24*60*60*1000;samesite=None;sameSite=none ;SameSite=None ;Secure ")
+    res.header("Set-Cookie", "token="+jwter+"; maxAge=7*24*60*60*1000;samesite=None;sameSite=none ;SameSite=None ;Secure ")
     res.cookie("hesham","hosom",{sameSite:"none" ,secure:true})
     res.cookie("hessham","hosom",{sameSite:"none" ,secure:false})
 

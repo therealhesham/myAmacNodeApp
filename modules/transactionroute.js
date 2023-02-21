@@ -127,7 +127,10 @@ try {
     // previewStoreSchema.findOneAndUpdate
     switch (saver.transactionType) {
         case "منصرف":
-            if (!findByID) return res.send("error")
+            if (!findByID) {
+            const deleterr = await modelexport.findByIdAndDelete(saver._id) 
+            return res.send("error")}
+            
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
             res.send ("not error")
             break;

@@ -51,8 +51,8 @@ if (savesecondmodel.typeOfImporter == "تنفيذ مقاول") {
 const {error} = schemaimport.validate(savesecondmodel)
 if (error) return res.send({error:error.details})
 const saver = await savesecondmodel.save()
- const findByID = await previewStoreSchema.findOne({store:data.store,
-    items:data.items
+ const findByID = await previewStoreSchema.findOne({store:saver.store,
+    items:saver.items
     })
     console.log("findByID")
 switch (saver.transaction) {

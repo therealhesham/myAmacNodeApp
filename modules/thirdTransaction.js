@@ -66,15 +66,10 @@ const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         })
 switch (saver.transaction) {
     case "تحويل":
-        if (  (findByID.quantity - saver.quantity) < 0 ) 
+        if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
          {await thirdModel.findByIdAndDelete(saver._id) 
         
             return  res.send("error")}
-        if ( !findByID) 
-         {
-          // const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-         const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
-         res.send("not error")}            
         if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
         
         return  res.send("error")

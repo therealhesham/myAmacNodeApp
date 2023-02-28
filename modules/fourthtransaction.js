@@ -71,7 +71,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
                     items:saver.items
                     })
                     // ||  findByI.items < 1 || (findByI.quantity - saver.quantity) < 0
-    if(  !findByI  ) return res.send("error from find by i ")                ;
+    if(  !findByI  ) return res.send(saver)                ;
     const saveNewData = await  saver.save();
     
     // const findByID = await previewStoreSchema.findOne({store:saveNewData.destination,

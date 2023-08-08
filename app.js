@@ -30,7 +30,7 @@ const { appRegisterNew } = require('./modules/registeruser');
 const app = express();
 app.use(cookieParser())  
 app.use(express.json())
-app.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+// app.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 // app.use(function(req,res,next){
 //   res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
 //   res.header({"Access-Control-Allow-Credentials": true});

@@ -60,6 +60,7 @@ switch (saver.transaction) {
         if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
             const deleterr = await secondModel.findByIdAndDelete(saver._id) 
             return res.send("error")}
+        if(findByID.type != saver.unit) return res.send("error")
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         res.send ("not true")
         break;
@@ -86,6 +87,7 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
             if (!findByID || (findByID.quantity - saver.quantity) < 0)  {
                 const deleterr = await secondModel.findByIdAndDelete(saver._id) 
                 return res.send("error")}
+            if(findByID.type != saver.unit) return res.send("error")
             const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
             res.send ("not true")
             break;

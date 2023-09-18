@@ -69,7 +69,141 @@ next()}
   })
 
 
+const namesOfContractors = new mongoose.Schema({
 
+   
+name:"string",
+
+
+})
+  const contractors = mongoose.model("contractors",namesOfContractors)
+  const namesOfStores = new mongoose.Schema({
+
+   
+    name:"string",
+    
+    
+    })
+      const stores = mongoose.model("stores",namesOfStores)
+    
+    
+      const nameOfPlaces = new mongoose.Schema({
+
+   
+        name:"string",
+        
+        
+        })
+          const places = mongoose.model("places",nameOfPlaces)
+        
+        
+    
+
+      
+    
+
+
+appPreview.post("/namesofcontractors",async(req,res)=>{
+
+
+try {
+    const data= new contractors({name:req.body.name})
+
+const saver = await data.save()
+  res.send(saver)
+} catch (error) {
+    res.send("error")
+}
+  
+
+
+})
+appPreview.get("/listofnames",async (req,res)=>{
+try {
+
+    const finder =await contractors.find({})
+
+    res.send(finder)
+} catch (error) {
+    console.log("error")
+}
+    
+
+
+}
+
+)
+
+
+appPreview.post("/namesofstores",async(req,res)=>{
+
+    
+    try {
+        const data= new stores({name:req.body.name})
+    
+    const saver = await data.save()
+      res.send(saver)
+    } catch (error) {
+        res.send("error")
+    }
+      
+    
+    
+    })
+    appPreview.get("/listofstores",async (req,res)=>{
+    try {
+        const finder = await stores.find({})
+    
+    } catch (error) {
+        res.send("error")
+    }
+        
+    
+    
+    }
+    
+    )
+
+
+
+
+
+
+        
+        
+        appPreview.post("/listofplaces",async(req,res)=>{
+        
+        
+            try {
+                const data= new places({name:req.body.name})
+            
+            const saver = await data.save()
+        res.send(saver)      
+            } catch (error) {
+                res.send("error")
+            }
+              
+            
+            
+            })
+            appPreview.get("/listofplaces",async (req,res)=>{
+            try {
+                const finder = await places.find({})
+            
+                res.send(finder)
+            } catch (error) {
+                res.send("error")
+            }
+                
+            
+            
+            }
+            
+            )
+        
+        
+        
+        
   module.exports.preview=appPreview
   module.exports.previewStoreSchema=mYmodel
   module.exports.mongoosetransaction= mongoose

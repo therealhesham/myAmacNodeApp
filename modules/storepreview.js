@@ -103,8 +103,29 @@ name:"string",
     
 
 
-appPreview.post("/namesofcontractors",async(req,res)=>{
+appPreview.post("/namesofcontractors",(req,res,next)=>{
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+next()}
+
+,async(req,res)=>{
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
 try {
     const data= new contractors({name:req.body.name})
@@ -135,8 +156,28 @@ try {
 )
 
 
-appPreview.post("/namesofstores",async(req,res)=>{
+appPreview.post("/namesofstores",(req,res,next)=>{
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+next()},async(req,res)=>{
+
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
     
     try {
         const data= new stores({name:req.body.name})
@@ -171,8 +212,28 @@ appPreview.post("/namesofstores",async(req,res)=>{
 
         
         
-        appPreview.post("/listofplaces",async(req,res)=>{
+        appPreview.post("/listofplaces",(req,res,next)=>{
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+next()},async(req,res)=>{
         
+res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
         
             try {
                 const data= new places({name:req.body.name})

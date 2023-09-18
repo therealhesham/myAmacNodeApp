@@ -51,10 +51,10 @@ next()}
 
 , async(req,res)=>{
 
-    try {
-      const unit = req.body.unit;
-      console.log(req.body);
-      const finder =  await previewStoreSchema.find({store:store})
+    try {const items = req.body.items;
+    const store=req.body.store
+      const finder =  await previewStoreSchema.findOne({items:items,store:store})
+      
       res.send(finder)
     } catch (error) {
       console.log(error);

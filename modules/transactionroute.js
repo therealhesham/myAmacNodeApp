@@ -138,7 +138,7 @@ try {
             if (!findByID){
                 const deleterr = await modelexport.findByIdAndDelete(saver._id) 
                 return res.send("error")}
-            const updatedInc = await previewStoreSchema.updateOne({_id:findByID._id},{"$inc":{parseInt(quantity):+ saver.quantity}})
+            const updatedInc = await previewStoreSchema.updateOne({_id:findByID._id},{"$inc":{quantity:+ saver.quantity}})
             res.send ("not error")
             break;
         

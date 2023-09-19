@@ -194,7 +194,7 @@ res.header("Access-Control-Allow-Origin", "*");
     appPreview.get("/listofstores",async (req,res)=>{
     try {
         const finder = await stores.find({})
-    
+    res.send(finder);
     } catch (error) {
         res.send("error")
     }

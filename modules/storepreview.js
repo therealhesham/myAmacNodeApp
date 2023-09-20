@@ -105,7 +105,7 @@ name:"string",
             
             
             })
-    const factories = mongoose.model("stores",nameOfFactories)
+    const factories = mongoose.model("factories",nameOfFactories)
             
 
     

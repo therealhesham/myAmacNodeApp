@@ -104,6 +104,7 @@ name:"string",
             name:"string",
             
             
+            
             })
     const factories = mongoose.model("factories",nameOfFactories)
             

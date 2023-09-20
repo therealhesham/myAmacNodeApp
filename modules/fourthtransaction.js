@@ -35,21 +35,9 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
       
       ,async (req,res)=>{
           
-    // const [contractor,setContractor] = useState("")
-    // const [destination,setDestination] = useState("")
-    // const [items,setItems] = useState("")
-    // const [quantity,setQuantity]=useState("")
-    // const [type,setType]=useState("")
+    
     try {
     
-        // var pairs = req.headers.cookie.split(';')
-      
-        // var cookies = {};
-        // for (var i = 0; i < pairs.length; i++) {
-        //    var nameValue = pairs[i].split('=');
-        //    cookies[nameValue[0].trim()] = nameValue[1];
-        // }
-        
         
         const sender = req.cookies.token
         const decoder = jwt.verify(sender,process.env.MYSECRET)
@@ -81,7 +69,10 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
     switch (saver.transactionType) {
         case "مرتجع":
             
-            // if (!findByID) return res.send(false)
+        if (!findByI.unit !== saveNewData.type  ) 
+        {await refunder.findByIdAndDelete(saveNewData._id) 
+       
+           return  res.send("error")}
             const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByI._id,{"$inc":{quantity:+ saveNewData.quantity}})
             res.send ("not false")
     

@@ -98,7 +98,17 @@ name:"string",
         
         
     
+          const nameOfFactories = new mongoose.Schema({
 
+   
+            name:"string",
+            
+            
+            })
+    const factories = mongoose.model("stores",nameOfFactories)
+            
+
+    
       
     
 
@@ -155,6 +165,58 @@ try {
 
 )
 
+
+appPreview.post("/listoffactories",(req,res,next)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header({"Access-Control-Allow-Credentials": true});
+      res.header("Access-Control-Max-Age", 24*60*60*1000);
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  
+      const sender = req.cookies.token
+    // console.log(sender)
+    if(!sender) return res.send("not authenticated");
+    const decoder =  jwt.verify(sender,process.env.MYSECRET)
+    
+  if(!decoder) return res.send("not authenticated");
+  next()}
+  
+  ,async(req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header({"Access-Control-Allow-Credentials": true});
+      res.header("Access-Control-Max-Age", 24*60*60*1000);
+        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  
+  try {
+      const data= new factories({name:req.body.name})
+  
+  const saver = await data.save()
+    res.send(saver)
+  } catch (error) {
+      res.send("error")
+  }
+    
+  
+  
+  })
+  appPreview.get("/listoffactories",async (req,res)=>{
+  try {
+  
+      const finder =await factories.find({})
+  
+      res.send(finder)
+  } catch (error) {
+      console.log("error")
+  }
+      
+  
+  
+  }
+  
+  )
 
 appPreview.post("/namesofstores",(req,res,next)=>{
 res.header("Access-Control-Allow-Origin", "*");

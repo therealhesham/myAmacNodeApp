@@ -15,7 +15,7 @@ destination:{type:"string",required:true},
 quantity:{type:"number",required:true},
 items:{type:"string",required:true},
 unit:{type:"string"},
-date:{type:"string",default:new Date(Date.now()).toDateString()},
+date:{type:"string"},
 user:"string"
     })
 
@@ -114,7 +114,8 @@ try {
     quantity:req.body.quantity,
     items:req.body.items,
     unit:req.body.unit,
-    user:req.body.user
+    user:req.body.user,
+    date:req.body.date
     
     })
     // console.log(req.headers.token)
@@ -163,5 +164,63 @@ try {
 
 
 })
+
+appTransactionRoute.post("/updatefirsttransaction",(req,res,next)=>{
+    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header({"Access-Control-Allow-Credentials": true});
+    res.header("Access-Control-Max-Age", 24*60*60*1000);
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+    const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+next()}
+
+,async(req,res)=>{
+
+/*
+transaction of stores usualy from(preview Schema) to (destination will 
+be left free til any further suggestions    ) 
+
+so it schema will be like that {from,to,items,quantity,date,userhandled transaction}
+*/
+try {
+const updater = await modelexport.findByIdAndUpdate(req.body.id,{receiptno:req.body.receiptno,
+    source:req.body.source,
+    destination:req.body.destination,
+quantity:req.body.quantity,
+items:req.body.items,
+unit:req.body.unit,
+user:req.body.user,
+date:req.body.date})
+
+    res.send("updated")
+} catch (error) {
+    res.send("false")
+}
+}
+
+
+
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports.transactRoute = appTransactionRoute

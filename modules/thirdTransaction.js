@@ -19,7 +19,7 @@ quantity:{type:"number",required:true},
 items:{type:"string",required:true},
 unit:{type:"string"},
 
-date:{type:"string",default:new Date(Date.now()).toDateString()},
+date:{type:"string"},
 user:"string"
 })
 
@@ -50,7 +50,7 @@ receiptno:req.body.receiptno,
 quantity:req.body.quantity,
 items:req.body.items,
 unit:req.body.unit,
-
+date:req.body.date,
 user:req.body.user
 })
 

@@ -20,7 +20,7 @@ quantity:{type:"number",required:true},
 items:{type:"string",required:true},
 unit:{type:"string"},
 location:{type:"string"},
-date:{type:"string",default:new Date(Date.now()).toDateString()},
+date:{type:"string"},
 user:"string"
 })
 
@@ -38,6 +38,7 @@ typeOfContracting:req.body.typeOfContracting,
 quantity:req.body.quantity,
 items:req.body.items,
 unit:req.body.unit,
+date:req.body.date,
 location:req.body.location,
 user:req.body.user
 })
@@ -182,4 +183,58 @@ appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     
     
     })
+    appSecondTransaction.post("/updatesecondtransaction",(req,res,next)=>{
+        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+        res.header({"Access-Control-Allow-Credentials": true});
+        res.header("Access-Control-Max-Age", 24*60*60*1000);
+          res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    
+        const sender = req.cookies.token
+      // console.log(sender)
+      if(!sender) return res.send("not authenticated");
+      const decoder =  jwt.verify(sender,process.env.MYSECRET)
+      
+    if(!decoder) return res.send("not authenticated");
+    next()}
+    
+    ,async(req,res)=>{
+    
+    /*
+    transaction of stores usualy from(preview Schema) to (destination will 
+    be left free til any further suggestions    ) 
+    
+    so it schema will be like that {from,to,items,quantity,date,userhandled transaction}
+    */
+    try {
+
+        
+    const updater = await secondModel.findByIdAndUpdate(req.body.id,{  
+    store:req.body.store,
+    receiptno:req.body.receiptno,
+    typeOfImporter:req.body.typeOfImporter,
+    contractor:req.body.contractor,
+    typeOfContracting:req.body.typeOfContracting,
+    
+    quantity:req.body.quantity,
+    items:req.body.items,
+    unit:req.body.unit,
+    date:req.body.date,
+    location:req.body.location,
+    user:req.body.user})
+    
+        res.send("updated")
+    } catch (error) {
+        res.send("false")
+    }
+    }
+    
+    
+    
+    
+    )
+    
+    
+
+
 module.exports.appSecondTransaction = appSecondTransaction

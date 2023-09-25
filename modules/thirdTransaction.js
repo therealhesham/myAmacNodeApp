@@ -57,7 +57,7 @@ user:req.body.user
  const findByID = await previewStoreSchema.findOne({store:savesecondmodel.from,
     items:savesecondmodel.items
     })
-    
+    console.log(findByID.type,savesecondmodel.unit)
 const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         items:savesecondmodel.items
         })

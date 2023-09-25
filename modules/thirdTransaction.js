@@ -76,7 +76,7 @@ if (findByIDinc.type   !==saver.unit )
       {await thirdModel.findByIdAndDelete(saver._id) 
      
          return res.send("error")}
-      if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
+      if (findByID.quantity - saver.quantity < 0 ) 
        {await thirdModel.findByIdAndDelete(saver._id) 
         
             return   res.send("error")}

@@ -53,10 +53,7 @@ unit:req.body.unit,
 date:req.body.date,
 user:req.body.user
 })
-
-
-
-const saver = await savesecondmodel.save()
+// const saver = await savesecondmodel.save()
  const findByID = await previewStoreSchema.findOne({store:savesecondmodel.from,
     items:savesecondmodel.items
     })
@@ -64,41 +61,16 @@ const saver = await savesecondmodel.save()
 const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         items:savesecondmodel.items
         })
-        console.log(findByIDinc)
-        console.log(findByID.type   !== findByIDinc.type !==saver.unit)
-switch (saver.transaction) {
-    case "تحويل":
-      if (findByID.type   !==saver.unit ) 
-      {await thirdModel.findByIdAndDelete(saver._id) 
-     
-         return res.send("error")}
-if (findByIDinc.type   !==saver.unit ) 
-      {await thirdModel.findByIdAndDelete(saver._id) 
-     
-         return res.send("error")}
-      if (findByID.quantity - saver.quantity < 0 ) 
-       {await thirdModel.findByIdAndDelete(saver._id) 
-        
-            return   res.send("error")}
-        if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
-        
-        return   res.send("error")
-        }
-        const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-        const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
+const quuant = findByID.quantity - savesecondmodel.quantity;
+if (findByID.type !== savesecondmodel.unit ) return res.send("error");
+if (findByIDinc.type   !== savesecondmodel.unit ) return res.send("error");
+if (quuant < 0 ) return res.send("error")
+  if(findByID.quantity <= 0)  return res.send("error")
+if (savesecondmodel.quantity > findByID.quantity )return res.send("error")
+const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
+  const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
         res.send("not error")
         
-        break;
-        case "وارد":
-            if (!findByID) return res.send("error")
-            // const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:+ saver.quantity}})
-            res.send ("not error")
-            break;
-    
-    default:
-        break;
-
-}
     
 
     

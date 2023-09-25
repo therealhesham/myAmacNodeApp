@@ -68,7 +68,7 @@ const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         console.log(findByID.type   !== findByIDinc.type !==saver.unit)
 switch (saver.transaction) {
     case "تحويل":
-      if (findByID.type   !== findByIDinc.type !==saver.unit ) 
+      if (!(findByID.type   == findByIDinc.type ==saver.unit) ) 
       {await thirdModel.findByIdAndDelete(saver._id) 
      
          return  res.send("error")}

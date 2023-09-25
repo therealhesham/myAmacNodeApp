@@ -71,15 +71,15 @@ switch (saver.transaction) {
       if (!(findByID.type   == findByIDinc.type ==saver.unit) ) 
       {await thirdModel.findByIdAndDelete(saver._id) 
      
-         return  res.send("error")}
+         return  console.log("first error")}
 
-      if (!findByID  || !findByIDinc || (findByID.quantity - saver.quantity) < 0 ) 
+      if (!(findByID  || findByIDinc || (findByID.quantity - saver.quantity) < 0 )) 
        {await thirdModel.findByIdAndDelete(saver._id) 
         
-            return  res.send("error")}
+            return  console.log("second error")}
         if(findByID.quantity < 0)    {await thirdModel.findByIdAndDelete(saver._id) 
         
-        return  res.send("error")
+        return  console.log("third error")
         }
         const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
         const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})

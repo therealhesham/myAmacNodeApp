@@ -53,11 +53,11 @@ unit:req.body.unit,
 date:req.body.date,
 user:req.body.user
 })
-// const saver = await savesecondmodel.save()
+
  const findByID = await previewStoreSchema.findOne({store:savesecondmodel.from,
     items:savesecondmodel.items
     })
-    console.log(findByID)
+    
 const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         items:savesecondmodel.items
         })
@@ -67,9 +67,11 @@ if (findByIDinc.type   !== savesecondmodel.unit ) return res.send("error");
 if (quuant < 0 ) return res.send("error")
   if(findByID.quantity <= 0)  return res.send("error")
 if (savesecondmodel.quantity > findByID.quantity )return res.send("error")
-const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- saver.quantity}})
-  const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ saver.quantity}})
-        res.send("not error")
+const updatedDec = await previewStoreSchema.findByIdAndUpdate(findByID._id,{"$inc":{quantity:- savesecondmodel.quantity}})
+  const updatedInc = await previewStoreSchema.findByIdAndUpdate(findByIDinc._id,{"$inc":{quantity:+ savesecondmodel.quantity}})
+const saver = await savesecondmodel.save()
+
+  console.log(saver)
         
     
 

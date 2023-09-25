@@ -64,7 +64,8 @@ const saver = await savesecondmodel.save()
 const findByIDinc = await previewStoreSchema.findOne({store:savesecondmodel.to,
         items:savesecondmodel.items
         })
-        
+        console.log(findByIDinc)
+        console.log(findByID.type   !== findByIDinc.type !==saver.unit)
 switch (saver.transaction) {
     case "تحويل":
       if (findByID.type   !== findByIDinc.type !==saver.unit ) 

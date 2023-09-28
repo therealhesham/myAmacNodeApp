@@ -1,11 +1,13 @@
 const express = require("express");
 const { schemaimport } = require("./exectionvalidator");
 const jwt =require("jsonwebtoken")
+
 const { mongoosetransaction, previewStoreSchema } = require("./storepreview");
+const cookieParser = require("cookie-parser");
 // const Fawn = require("fawn")
 
 appSecondTransaction = express();
-
+appSecondTransaction.use(cookieParser())
 const secondModel = mongoosetransaction.model("secondtransaction",new mongoosetransaction.Schema(
     {
         

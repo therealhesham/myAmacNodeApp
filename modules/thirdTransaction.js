@@ -122,13 +122,14 @@ next()}
       const decoder =  jwt.verify(sender,process.env.MYSECRET)
       
     if(!decoder) return res.send("not authenticated");
+    if(!decoder.isAdmin) return res.send("not authenticated");
     next()}
     
     ,async(req,res)=>{
     
         const id =req.params.id;
         console.log(id)
-        await thirdModel.findByIdAndDelete(id)
+        const deleted=await thirdModel.findByIdAndDelete(id)
         res.send("deleted")
         
         

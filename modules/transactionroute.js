@@ -23,6 +23,13 @@ user:"string"
 
 appTransactionRoute.post("/deletfirsttransaction",async(req,res)=>{
 
+    const sender = req.cookies.token
+    // console.log(sender)
+    if(!sender) return res.send("not authenticated");
+    const decoder =  jwt.verify(sender,process.env.MYSECRET)
+    
+  if(!decoder) return res.send("not authenticated");
+  if(!decoder.isAdmin) return res.send("not authenticated");
     const id =req.body.id;
 
 const delet = await modelexport.findByIdAndDelete(id)
@@ -87,13 +94,18 @@ appTransactionRoute.post("/transactionexport",(req,res,next)=>{
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-
+try {
     const sender = req.cookies.token
-  // console.log(sender)
-  if(!sender) return res.send("not authenticated");
-  const decoder =  jwt.verify(sender,process.env.MYSECRET)
-  
-if(!decoder) return res.send("not authenticated");
+    // console.log(sender)
+    if(!sender) return res.send("not authenticated");
+    const decoder =  jwt.verify(sender,process.env.MYSECRET)
+    
+  if(!decoder) return res.send("not authenticated");
+  if(!decoder.isAdmin) return res.send("not authenticated");
+} catch (error) {
+    res.send("not authenticated");
+}
+   
 next()}
 
 ,async(req,res)=>{
@@ -178,6 +190,7 @@ appTransactionRoute.post("/updatefirsttransaction",(req,res,next)=>{
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
 if(!decoder) return res.send("not authenticated");
+if(!decoder.isAdmin) return res.send("not authenticated");
 next()}
 
 ,async(req,res)=>{

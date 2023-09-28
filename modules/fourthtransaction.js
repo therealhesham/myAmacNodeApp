@@ -32,6 +32,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
         const decoder =  jwt.verify(sender,process.env.MYSECRET)
         
       if(!decoder) return res.send("not authenticated");
+      if(!decoder.isAdmin) return res.send("not authenticated");
       next()}
       
       ,async (req,res)=>{
@@ -125,6 +126,13 @@ appFourthTransction.get("/refunds",async(req,res)=>{
 
 
 appFourthTransction.get("/deletrefund/:id",async(req,res)=>{
+  const sender = req.cookies.token
+  // console.log(sender)
+  if(!sender) return res.send("not authenticated");
+  const decoder =  jwt.verify(sender,process.env.MYSECRET)
+  
+if(!decoder) return res.send("not authenticated");
+if(!decoder.isAdmin) return res.send("not authenticated");
 
     const id =req.params.id;
     

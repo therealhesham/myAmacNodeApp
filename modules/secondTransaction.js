@@ -174,6 +174,13 @@ next()}
 })
 appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     
+    const sender = req.cookies.token
+    // console.log(sender)
+    if(!sender) return res.send("not authenticated");
+    const decoder =  jwt.verify(sender,process.env.MYSECRET)
+    
+  if(!decoder) return res.send("not authenticated");
+  if(!decoder.isAdmin) return res.send("not authenticated");
     const id =req.params.id;
     console.log(id)
     await secondModel.findByIdAndDelete(id)
@@ -196,6 +203,7 @@ appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
       const decoder =  jwt.verify(sender,process.env.MYSECRET)
       
     if(!decoder) return res.send("not authenticated");
+    if(!decoder.isAdmin) return res.send("not authenticated");
     next()}
     
     ,async(req,res)=>{

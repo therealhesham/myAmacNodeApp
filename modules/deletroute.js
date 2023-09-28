@@ -19,6 +19,7 @@ appDelete.post("/delete",(req,res,next)=>{
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
 if(!decoder) return res.send("not authenticated");
+if(!decoder.isAdmin) return res.send("not authenticated");
 next()}
 
 ,async(req,res)=>{

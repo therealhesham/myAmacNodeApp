@@ -127,6 +127,7 @@ appSecondTransaction.get("/specificdatas/:store",(req,res,next)=>{
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
     const sender = req.cookies.token
+    console.log(req.cookies)
   // console.log(sender)
   if(!sender) return res.send("false");
   const decoder =  jwt.verify(sender,process.env.MYSECRET)

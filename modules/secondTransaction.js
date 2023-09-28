@@ -175,7 +175,7 @@ next()}
 appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     
     const sender = req.cookies.token
-    // console.log(sender)
+    console.log(sender)
     if(!sender) return res.send("not authenticated");
     const decoder =  jwt.verify(sender,process.env.MYSECRET)
     

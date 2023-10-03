@@ -176,6 +176,7 @@ next()}
       }
   
 })
+
 appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
         res.header({"Access-Control-Allow-Credentials": true});

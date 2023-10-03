@@ -177,7 +177,7 @@ next()}
   
 })
 
-appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
+appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
         res.header({"Access-Control-Allow-Credentials": true});
         res.header("Access-Control-Max-Age", 24*60*60*1000);
@@ -191,7 +191,7 @@ appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     
   if(!decoder) return res.send("not authenticated");
   if(!decoder.isAdmin) return res.send("not authenticated");
-    const id =req.params.id;
+    const id =req.body.id;
     console.log(id)
     await secondModel.findByIdAndDelete(id)
     res.send("deleted")

@@ -176,7 +176,6 @@ next()}
       }
   
 })
-
 appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
         res.header({"Access-Control-Allow-Credentials": true});
@@ -185,7 +184,7 @@ appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
       res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
     
     const sender = req.cookies.token
-    console.log(req.cookies)
+    console.log(req.headers)
     if(!sender) return res.send("not authenticated");
     const decoder =  jwt.verify(sender,process.env.MYSECRET)
     

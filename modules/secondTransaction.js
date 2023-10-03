@@ -151,7 +151,7 @@ appSecondTransaction.get("/getsecondtransactions",(req,res,next)=>{
 
     const sender = req.cookies.token
   // console.log(sender)
-  console.log(req.cookies)
+  
 //   if(!sender) return res.send("not authenticated");
 //   const decoder =  jwt.verify(sender,process.env.MYSECRET)
   
@@ -161,7 +161,7 @@ next()}
 ,async(req,res)=>{
     try {
         const sender = req.cookies.token
-        console.log(req.cookies)
+  
         const decoder = jwt.verify(sender,process.env.MYSECRET)
     
         
@@ -197,7 +197,7 @@ await secondModel.findByIdAndDelete(id)
 res.send("deleted")
 
   } catch (error) {
-throw new Error(error)    
+console.log(error)    
   }  
     
     

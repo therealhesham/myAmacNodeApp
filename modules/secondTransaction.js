@@ -183,6 +183,16 @@ appSecondTransaction.get("/deletesecondtransaction/:id",async(req,res)=>{
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  var pairs = req.headers.cookie.split(';')
+
+  var cookies = {};
+  for (var i = 0; i < pairs.length; i++) {
+     var nameValue = pairs[i].split('=');
+     cookies[nameValue[0].trim()] = nameValue[1];
+  }
+
+  console.log(cookies)
+
 
 const sender = req.cookies.token
 console.log(sender)

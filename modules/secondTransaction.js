@@ -160,8 +160,7 @@ next()}
 
 ,async(req,res)=>{
     try {
-        const sender = req.cookies.token
-        console.log(req.cookies)
+        
         const decoder = jwt.verify(sender,process.env.MYSECRET)
     
         
@@ -185,7 +184,7 @@ res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Over
 
   const sender = req.cookies.token
 // console.log(sender)
-console.log(req.cookies)
+console.log(req)
 //   if(!sender) return res.send("not authenticated");
 //   const decoder =  jwt.verify(sender,process.env.MYSECRET)
 

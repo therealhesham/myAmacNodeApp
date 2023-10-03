@@ -10,6 +10,7 @@ const modelexport = mongoosetransaction.model("firstTransaction",new mongoosetra
         
 transactionType:"string",
 receiptno:"string",
+        file:"string",
 source:{type:"string",required:true},
 destination:{type:"string",required:true},
 quantity:{type:"number",required:true},
@@ -124,6 +125,7 @@ try {
         source:req.body.source,
         destination:req.body.destination,
     quantity:req.body.quantity,
+        file:req.body.file,
     items:req.body.items,
     unit:req.body.unit,
     user:req.body.user,

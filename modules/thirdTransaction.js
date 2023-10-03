@@ -18,7 +18,7 @@ receiptno:"string",
 quantity:{type:"number",required:true},
 items:{type:"string",required:true},
 unit:{type:"string"},
-
+file:"string",
 date:{type:"string"},
 user:"string"
 })
@@ -31,12 +31,6 @@ appThirdTransaction.post("/thirdtransaction",(req,res,next)=>{
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 
-    const sender = req.cookies.token
-  // console.log(sender)
-  if(!sender) return res.send("not authenticated");
-  const decoder =  jwt.verify(sender,process.env.MYSECRET)
-  
-if(!decoder) return res.send("not authenticated");
 next()}
 
 ,async(req,res)=>{
@@ -46,7 +40,7 @@ const savesecondmodel = new thirdModel({
 from:req.body.from,
 to:req.body.to,
 receiptno:req.body.receiptno,
-
+file:req.body.file,
 quantity:req.body.quantity,
 items:req.body.items,
 unit:req.body.unit,
@@ -88,7 +82,7 @@ appSecondTransaction.get("/getthirdtransactions",(req,res,next)=>{
   // console.log(sender)
   if(!sender) return res.send("not authenticated");
   const decoder =  jwt.verify(sender,process.env.MYSECRET)
-  
+  console.log(decoder)
 if(!decoder) return res.send("not authenticated");
 next()}
 

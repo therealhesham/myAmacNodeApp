@@ -147,7 +147,18 @@ app.get('/', async (req, res) => {
 
 
 // app.options('/login', cors()) 
+app.get("/cookire",(req,res)=>{
+  var pairs = req.headers.cookie.split(';')
 
+  var cookies = {};
+  for (var i = 0; i < pairs.length; i++) {
+     var nameValue = pairs[i].split('=');
+     cookies[nameValue[0].trim()] = nameValue[1];
+  }
+
+  console.log(cookies)
+
+})
   
 app.post("/datapost",async(req,res)=>
 

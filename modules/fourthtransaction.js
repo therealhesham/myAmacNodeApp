@@ -15,6 +15,7 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
     type:{type:"string",required:true},
     user:"string",
     date:"string",
+    file:"string"
     
         }))
     
@@ -52,7 +53,8 @@ const refunder = mongoosetransaction.model("refund",new mongoosetransaction.Sche
             quantity:req.body.quantity,
             type:req.body.type,
             date:req.body.date,
-            user:decoder.username
+            user:decoder.username,
+            file:req.body,file
             
             
                 })

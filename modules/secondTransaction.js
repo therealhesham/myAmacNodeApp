@@ -219,10 +219,10 @@ appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
     console.log(id)
     const finder = await secondModel.findById(id)
     const deleter = await secondModel.findByIdAndDelete(id)
-
+    const date=new Date()
 const datar = new recyclebin({
   type:"منصرف",
-  date:formatter,
+  date:date.toLocaleString("en-US", {timeZone: "egypt"}),
   user:decoder.username,
   imageurl:finder.file,
   transaction:finder

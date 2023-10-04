@@ -217,8 +217,8 @@ appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
   if(!decoder.isAdmin) return res.send("not authenticated");
     const id =req.body.id;
     console.log(id)
-    const deleter = await secondModel.findByIdAndDelete(id)
-
+    const deleter = await secondModel.findOneAndDelete({_id:req.body.id})
+    
 const datar = new recyclebin({
   type:"منصرف",
   date:formatter,

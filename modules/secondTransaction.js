@@ -218,7 +218,8 @@ appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
     const id =req.body.id;
     console.log(id)
     const deleter = await secondModel.findByIdAndDelete(id)
-const saver = await recyclebin.save({
+
+const datar = new recyclebin({
   type:"منصرف",
   date:formatter,
   user:decoder.username,
@@ -226,6 +227,7 @@ const saver = await recyclebin.save({
   transaction:deleter
   
   })
+    const saver = await datar.save()
 
   
     res.send("deleted")

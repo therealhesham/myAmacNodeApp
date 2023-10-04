@@ -217,27 +217,21 @@ appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
   if(!decoder.isAdmin) return res.send("not authenticated");
     const id =req.body.id;
     console.log(id)
-    const deleter = await secondModel.findOneAndDelete({_id:req.body.id},async function (err, docs) { 
-      if (err){ 
-          res.send("not authenticated") 
-      } 
-      else{ 
-        const datar = new recyclebin({
-          type:"منصرف",
-          date:formatter,
-          user:decoder.username,
-          imageurl:docs.file,
-          transaction:docs
-          
-          })
-            const saver = await datar.save()
-        
-          
-            res.send("deleted")
-        
-      } 
-  } )
-    
+    const finder = await secondModel.findByID(id)
+    const deleter = await secondModel.findByIdAndDelete(id)
+
+const datar = new recyclebin({
+  type:"منصرف",
+  date:formatter,
+  user:decoder.username,
+  imageurl:finder.file,
+  transaction:finder
+  
+  })
+    const saver = await datar.save()
+
+  
+    res.send("deleted")
     
     
     

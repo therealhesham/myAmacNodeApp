@@ -42,6 +42,15 @@ user:"string"
 })
 
 )
+
+appSecondTransaction.get("/recyclebin",async(req,res)=>{
+const finder = await recyclebin.find();
+res.send(finder)
+
+
+})
+
+
 appSecondTransaction.post("/secondtransaction",async(req,res)=>{
 
 const savesecondmodel = new secondModel({

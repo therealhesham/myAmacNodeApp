@@ -18,7 +18,7 @@ let options = {
 const recyclebin = mongoosetransaction.model("importanttrash",new mongoosetransaction.Schema({
 
 type:"string",
-date:"string",
+date:"date",
 user:"string",
 imageurl:"string",
 transaction:"object"

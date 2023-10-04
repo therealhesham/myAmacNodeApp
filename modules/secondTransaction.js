@@ -4,10 +4,25 @@ const jwt =require("jsonwebtoken")
 
 const { mongoosetransaction, previewStoreSchema } = require("./storepreview");
 const cookieParser = require("cookie-parser");
+const { recyclebin } = require("./dbreceyclebin");
 // const Fawn = require("fawn")
 
 appSecondTransaction = express();
 appSecondTransaction.use(cookieParser())
+
+
+let options = {
+  timeZone: 'Egypt',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+}
+const formatter = new Intl.DateTimeFormat([], options);
+
+
 const secondModel = mongoosetransaction.model("secondtransaction",new mongoosetransaction.Schema(
     {
         
@@ -193,7 +208,17 @@ appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
   if(!decoder.isAdmin) return res.send("not authenticated");
     const id =req.body.id;
     console.log(id)
-    await secondModel.findByIdAndDelete(id)
+    const deleter = await secondModel.findByIdAndDelete(id)
+const saver = new recyclebin.save({
+  type:"منصرف",
+  date:formatter,
+  user:decoder.username,
+  imageurl:deleter.file,
+  transaction:deleter
+  
+  })
+
+  
     res.send("deleted")
     
     

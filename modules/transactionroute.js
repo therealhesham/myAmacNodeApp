@@ -8,7 +8,7 @@ appTransactionRoute = express();
 const modelexport = mongoosetransaction.model("firstTransaction",new mongoosetransaction.Schema(
     {
         
-transactionType:"string",
+transaction:"string",
 receiptno:"string",
         file:"string",
 source:{type:"string",required:true},
@@ -120,7 +120,7 @@ so it schema will be like that {from,to,items,quantity,date,userhandled transact
 try {
     console.log(req.body)
     const data =  new modelexport({
-        transactionType:"وارد",
+        transaction:"وارد",
         receiptno:req.body.receiptno,
         source:req.body.source,
         destination:req.body.destination,

@@ -131,4 +131,5 @@ next()}
         
         })
     
-module.exports.appThirdTransaction = appThirdTransaction
+module.exports.appThirdTransaction = appThirdTransaction;
+module.exports.thirdModel=thirdModel;

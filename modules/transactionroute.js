@@ -238,4 +238,5 @@ date:req.body.date})
 
 
 
-module.exports.transactRoute = appTransactionRoute
+module.exports.transactRoute = appTransactionRoute;
+module.exports.modelexport=modelexport;

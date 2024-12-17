@@ -140,7 +140,7 @@ try {
     })
     
     // previewStoreSchema.findOneAndUpdate
-    switch (saver.transactionType) {
+    switch (saver.transaction) {
         case "منصرف":
             if (!findByID) {
             const deleterr = await modelexport.findByIdAndDelete(saver._id) 

@@ -7,11 +7,11 @@ const Cookies = require("universal-cookie")
 const { app } = require("../app")
 require('dotenv').config({ debug: true })
 appLogin=express()
-appLogin.use(cors({maxAge:24*60*60*1000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*',credentials:true,preflightContinue: true}));
+appLogin.use(cors({maxAge:24*60*60*1000,origin: process.env.URL,exposedHeaders:'*',credentials:true,preflightContinue: true}));
 appLogin.use(express.json())
 // appLogin.use(session({resave:false,secret:'session',cookie:{maxAge:1000*60*60,sameSite:"none",secure:true}}))
 appLogin.use(function(req,res,next){
-  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+  res.header("Access-Control-Allow-Origin", process.env.URL);
   res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override,Content-Type, Accept');
   res.header("Access-Control-Max-Age", 24*60*60*1000);
@@ -61,7 +61,7 @@ res.json(jwter)
 
 })
 appLogin.get("/logout",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -72,7 +72,7 @@ next()
 
 
 },async(req,res)=>{
-    res.header({"Access-Control-Allow-Origin": "https://my-amac-react-app.vercel.app"});
+    res.header({"Access-Control-Allow-Origin": process.env.URL});
     res.header("Set-Cookie", "token=h; max-age=1;samesite=None;sameSite=none ;SameSite=None ;Secure ")
     // res.clearCookie("token")
 res.send("token deleted")
@@ -81,7 +81,7 @@ res.send("token deleted")
 
 
 appLogin.get("/checker",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');

@@ -7,7 +7,7 @@ const jwt =require("jsonwebtoken")
 const appPostNewDataTostore = expressApp()
 
 appPostNewDataTostore.post("/updatedata",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -42,7 +42,7 @@ next()}
 
 
 appPostNewDataTostore.post("/postnewdatatostore",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -56,6 +56,10 @@ next()}
 {
     try {
 const data= new previewStoreSchema({data:req.body.date,
+
+    code:req.body.code,
+sayedCode:req.body.sayedCode
+    ,
     store:req.body.store,
     items:req.body.items,
     type:req.body.type,

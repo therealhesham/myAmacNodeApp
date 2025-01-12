@@ -13,7 +13,7 @@ const cors=require("cors")
 const cloudinary = require('cloudinary').v2;
 appRegisterNew = express();
 // Return "https" URLs by setting secure: true
-appRegisterNew.use(cors({credentials:true,maxAge:100000000,origin:"https://my-amac-react-app.vercel.app" ,exposedHeaders:'*'}));
+appRegisterNew.use(cors({credentials:true,maxAge:100000000,origin:process.env.URL ,exposedHeaders:'*'}));
 cloudinary.config({ 
   cloud_name: 'dkinaxrul', 
   api_key: '265116928379554', 
@@ -129,7 +129,7 @@ appRegisterNew.get("/userlists",async (req,res)=>{
   
     
 appRegisterNew.post("/file",(req,res,next)=>{
-  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+  res.header("Access-Control-Allow-Origin", process.env.URL);
   res.header({"Access-Control-Allow-Credentials": true});
   res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -151,7 +151,7 @@ next()
 
   
   try {
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -195,7 +195,7 @@ res.send("https://scontent.fcai19-4.fna.fbcdn.net/v/t39.30808-6/292514166_454783
 })
 
 appRegisterNew.post("/register",(req,res,next)=>{
-  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+  res.header("Access-Control-Allow-Origin", process.env.URL);
   res.header({"Access-Control-Allow-Credentials": true});
   res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -216,7 +216,7 @@ next()
 },async(req,res)=>{
 
   try{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -276,7 +276,7 @@ console.log(error)
 
 
 appRegisterNew.get("/info/:id",(req,res,next)=>{
-  res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+  res.header("Access-Control-Allow-Origin", process.env.URL);
   res.header({"Access-Control-Allow-Credentials": true});
   res.header("Access-Control-Max-Age", 24*60*60*1000);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');

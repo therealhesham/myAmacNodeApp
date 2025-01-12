@@ -12,7 +12,13 @@ mongoose.connect("mongodb+srv://"+ process.env.MONGOUSERNAME +":"+process.env.MO
 
 
 const schema = new mongoose.Schema({
+  sayedCode:{type:"string"},
+code:{type:"string"},
 
+itemCategory:{type:"string"}
+
+,
+materialCategory:{type:"string"},
     store :{type:"string",required:true},
     items:{type:"string",required:true},
     type:{type:"string",required:true},
@@ -21,11 +27,40 @@ const schema = new mongoose.Schema({
 quantity:{type:"number",required:true}})
   const mYmodel = mongoose.model("mainwarhouses",schema)
 
+appPreview.get("/uniqueitems",(req,res,next)=>{
 
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", process.env.URL);
+res.header({"Access-Control-Allow-Credentials": true});
+res.header("Access-Control-Max-Age", 24*60*60*1000);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+const sender = req.cookies.token
+// console.log(sender)
+if(!sender) return res.send("not authenticated");
+const decoder =  jwt.verify(sender,process.env.MYSECRET)
+
+if(!decoder) return res.send("not authenticated");
+next()}
+
+,async(req,res)=>{
+
+const emptylist=[];
+const finder = await mYmodel.find({});
+for (let index = 0; index < finder.length; index++) {
+  // if(emptylist.)
+  emptylist.push(finder[index].items)
+  
+}
+const ar =  [...new Set(emptylist)]
+res.send(ar)
+
+})
 
   appPreview.get("/preview",(req,res,next)=>{
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -116,7 +151,7 @@ name:"string",
 
 appPreview.post("/namesofcontractors",(req,res,next)=>{
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -132,7 +167,7 @@ next()}
 
 ,async(req,res)=>{
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -169,7 +204,7 @@ try {
 
 appPreview.post("/listoffactories",(req,res,next)=>{
   res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+        res.header("Access-Control-Allow-Origin", process.env.URL);
       res.header({"Access-Control-Allow-Credentials": true});
       res.header("Access-Control-Max-Age", 24*60*60*1000);
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -185,7 +220,7 @@ appPreview.post("/listoffactories",(req,res,next)=>{
   
   ,async(req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+        res.header("Access-Control-Allow-Origin", process.env.URL);
       res.header({"Access-Control-Allow-Credentials": true});
       res.header("Access-Control-Max-Age", 24*60*60*1000);
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -221,7 +256,7 @@ appPreview.post("/listoffactories",(req,res,next)=>{
 
 appPreview.post("/namesofstores",(req,res,next)=>{
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -236,7 +271,7 @@ if(!decoder) return res.send("not authenticated");
 next()},async(req,res)=>{
 
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -277,7 +312,7 @@ res.header("Access-Control-Allow-Origin", "*");
         
         appPreview.post("/listofplaces",(req,res,next)=>{
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -292,7 +327,7 @@ if(!decoder) return res.send("not authenticated");
 next()},async(req,res)=>{
         
 res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+      res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');

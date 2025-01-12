@@ -12,6 +12,12 @@ transaction:"string",
 receiptno:"string",
         file:"string",
 source:{type:"string",required:true},
+refundlocation:{type:"string",required:false},
+
+
+importedreceiptno:{type:"string",required:false},
+refundcontractor:{type:"string",required:false}
+,
 destination:{type:"string",required:true},
 quantity:{type:"number",required:true},
 items:{type:"string",required:true},
@@ -42,7 +48,7 @@ res.send(delet)
     
     })
 appTransactionRoute.get("/firsttansactionlist",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -89,8 +95,53 @@ next()}
 
 
 })
+
+appTransactionRoute.post("/searchfirsttransaction",async(req,res,next)=>{
+
+res.header("Access-Control-Allow-Origin", process.env.URL);
+res.header({"Access-Control-Allow-Credentials": true});
+res.header("Access-Control-Max-Age", 24*60*60*1000);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+const sender = req.cookies.token
+console.log(req.cookies)
+// console.log(sender)
+if(!sender) return res.send("false");
+const decoder =  jwt.verify(sender,process.env.MYSECRET)
+
+if(!decoder) return res.send("false");
+next()}
+
+,async(req,res)=>{
+
+    const obj = {
+        typeOfImporter:req.body.searchedTypeOfImporter,
+      contractor:req.body.searchedContractor,
+      items:req.body.searchedItem,
+      destination:req.body.searchedStore
+ ,         
+  source:req.body.searchedFactory    
+      
+      
+      }
+        console.log(req.body)
+      
+      const cleanedObj = Object.fromEntries(
+        Object.entries(obj).filter(([key, value]) => value !== '' && value !== null && value !== undefined)
+      );
+      console.log(cleanedObj)
+      const finder = await modelexport.find(cleanedObj)
+      
+      res.send(finder);
+      
+
+
+})
+
+
 appTransactionRoute.post("/transactionexport",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -129,6 +180,9 @@ try {
     items:req.body.items,
     unit:req.body.unit,
     user:req.body.user,
+    refundcontractor:req.body.refundContractor,
+    refundlocation:req.body.refundLocation,
+    importedreceiptno:req.body.importedReceiptNo,
     date:req.body.date
     
     })
@@ -180,7 +234,7 @@ try {
 })
 
 appTransactionRoute.post("/updatefirsttransaction",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');

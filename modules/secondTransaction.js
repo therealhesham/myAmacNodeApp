@@ -28,12 +28,12 @@ const formatter = new Intl.DateTimeFormat([], options);
 const secondModel = mongoosetransaction.model("secondtransaction",new mongoosetransaction.Schema(
     {
         
-transaction:"string",
-receiptno:"string",
-store:{type:"string",required:true},
-typeOfImporter:{type:"string",required:true},
-contractor:{type:"string"},
-typeOfContracting:{type:"string"},
+transaction:"string",//خصم ولا تشغيل
+receiptno:"string",//رقم الريسيت
+store:{type:"string",required:true},//مخزن
+typeOfImporter:{type:"string",required:true},//تنفيذ ذاتي / مقاول
+contractor:{type:"string"},//اسم المقاول
+typeOfContracting:{type:"string"},//خصم ولا تشغيل
 
 quantity:{type:"number",required:true},
 items:{type:"string",required:true},
@@ -51,7 +51,47 @@ res.send(finder)
 
 
 })
+appSecondTransaction.post("/searchsecondtransaction",async(req,res,next)=>{
 
+res.header("Access-Control-Allow-Origin", process.env.URL);
+res.header({"Access-Control-Allow-Credentials": true});
+res.header("Access-Control-Max-Age", 24*60*60*1000);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
+res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+
+const sender = req.cookies.token
+console.log(req.cookies)
+// console.log(sender)
+if(!sender) return res.send("false");
+const decoder =  jwt.verify(sender,process.env.MYSECRET)
+
+if(!decoder) return res.send("false");
+next()}
+
+,async(req,res)=>{
+
+const obj = {
+  typeOfImporter:req.body.searchedTypeOfImporter,
+contractor:req.body.searchedContractor,
+items:req.body.searchedItem,
+store:req.body.searchedStore
+
+
+
+
+
+}
+  console.log(req.body)
+
+const cleanedObj = Object.fromEntries(
+  Object.entries(obj).filter(([key, value]) => value !== '' && value !== null && value !== undefined)
+);
+console.log(cleanedObj)
+const finder = await secondModel.find(cleanedObj)
+
+res.send(finder);
+  
+})
 
 appSecondTransaction.post("/secondtransaction",async(req,res)=>{
 
@@ -146,7 +186,7 @@ else if (savesecondmodel.typeOfImporter == "تنفيذ ذاتي"){
 
   
 appSecondTransaction.get("/specificdatas/:store",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -169,7 +209,7 @@ next()}
 
 })
 appSecondTransaction.get("/getsecondtransactions",(req,res,next)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
     res.header({"Access-Control-Allow-Credentials": true});
     res.header("Access-Control-Max-Age", 24*60*60*1000);
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -204,7 +244,7 @@ next()}
 })
 
 appSecondTransaction.post("/deletesecondtransaction",async(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+    res.header("Access-Control-Allow-Origin", process.env.URL);
         res.header({"Access-Control-Allow-Credentials": true});
         res.header("Access-Control-Max-Age", 24*60*60*1000);
           res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
@@ -240,7 +280,7 @@ const datar = new recyclebin({
     
     })
     appSecondTransaction.post("/updatesecondtransaction",(req,res,next)=>{
-        res.header("Access-Control-Allow-Origin", "https://my-amac-react-app.vercel.app");
+        res.header("Access-Control-Allow-Origin", process.env.URL);
         res.header({"Access-Control-Allow-Credentials": true});
         res.header("Access-Control-Max-Age", 24*60*60*1000);
           res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,UPDATE,OPTIONS');
